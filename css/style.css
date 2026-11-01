@@ -1,0 +1,8 @@
+.grht-hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),
+        url("../visual/Robot futurista presenta tecnología neón.jpg") center/cover no-repeat;
+}
