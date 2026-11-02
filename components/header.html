@@ -1,20 +1,40 @@
-<header class="grht-header">
-    <div class="row">
+<!DOCTYPE html>
+<html lang="es-PE">
 
-        <div>
-            <a href="index.html"><img class="img-fluid" src="visual\TN.jpg" alt="logo"></a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encuentra celulares, laptops, accesorios y productos tecnológicos en TecnoNova.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Header</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-4">
+                    <a href="index.html"><img class="img-fluid" src="visual\TN.jpg" alt="logo"></a>
+                </div>
+                <div class="col-4">
+                    <input type="text" id="busqueda" placeholder="Buscar producto">
+
+                    <button onclick="buscarProducto()">🔍</button>
+                </div>
+                <div class="col-4">
+                    <a href="comments.html" title="Comentarios">👤</a>
+
+                    <a href="blog.html" title="BLog">🌐</a>
+
+                    <a href="shopping.html" title="Carrito">🛒</a>
+
+                </div>
+            </div>
         </div>
+    </header>
+</body>
 
-        <div class="grht-browser">
-
-            <input type="text" id="grht-search" placeholder="Buscar producto">
-
-            <button onclick="buscarProducto()">🔍</button>
-
-        </div>
-
-        <div class="grht-actions">
-
-        </div>
-    </div>
-</header>
+</html>
