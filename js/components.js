@@ -22,7 +22,7 @@ function guardarDatos(clave, datos) {
     try {
         localStorage.setItem(clave, JSON.stringify(datos));
     } catch {
-        alert("No se pudieron guardar los datos en este navegador.");
+        alert("No se pudieron guardar los datos.");
     }
 }
 
@@ -30,18 +30,22 @@ async function cargarComponentes() {
     for (const [id, archivo] of Object.entries(componentes)) {
         const elemento = document.getElementById(id);
 
-        if (!elemento) continue;
+        if (!elemento) {
+            console.error(`Falta el contenedor #${id} en esta página.`);
+            continue;
+        }
 
         try {
             const respuesta = await fetch(archivo);
 
             if (!respuesta.ok) {
-                throw new Error(`No se pudo cargar ${archivo}`);
+                throw new Error(`Error ${respuesta.status}: ${archivo}`);
             }
 
             elemento.innerHTML = await respuesta.text();
+            console.log(`${archivo} cargado correctamente.`);
         } catch (error) {
-            console.error(error);
+            console.error(`No se pudo cargar ${archivo}:`, error);
         }
     }
 
@@ -97,7 +101,6 @@ function actualizarCatalogo() {
                 .includes(busquedaActual.toLowerCase());
 
             const mostrar = coincideCategoria && coincideBusqueda;
-
             producto.hidden = !mostrar;
 
             if (mostrar) {
@@ -127,9 +130,7 @@ function obtenerPrecio(tarjeta) {
         return Number(precioPrincipal.textContent.replace(/[^\d.]/g, ""));
     }
 
-    const precios = [...tarjeta.querySelectorAll("p")];
-
-    const precio = precios.find(elemento =>
+    const precio = [...tarjeta.querySelectorAll("p")].find(elemento =>
         /S\/\s*[\d,.]+/.test(elemento.textContent) &&
         !elemento.querySelector("del") &&
         !elemento.closest("del")
@@ -142,6 +143,7 @@ function obtenerPrecio(tarjeta) {
 
 function agregarAlCarrito(boton) {
     const tarjeta = boton.closest(".grht-card");
+
     if (!tarjeta) return;
 
     const nombre = tarjeta.querySelector("h3") ? .textContent.trim();
@@ -162,13 +164,7 @@ function agregarAlCarrito(boton) {
     if (existente) {
         existente.cantidad++;
     } else {
-        grhtCart.push({
-            id,
-            nombre,
-            imagen,
-            precio,
-            cantidad: 1
-        });
+        grhtCart.push({ id, nombre, imagen, precio, cantidad: 1 });
     }
 
     guardarCarrito();
@@ -177,13 +173,11 @@ function agregarAlCarrito(boton) {
 
 function crearBoton(texto, accion, indice, clase) {
     const boton = document.createElement("button");
-
     boton.type = "button";
     boton.className = clase;
     boton.textContent = texto;
     boton.dataset.cartAction = accion;
     boton.dataset.index = indice;
-
     return boton;
 }
 
@@ -197,7 +191,6 @@ function mostrarCarrito() {
     contenedor.replaceChildren();
 
     let total = 0;
-
     mensajeVacio.hidden = grhtCart.length > 0;
 
     grhtCart.forEach((producto, indice) => {
@@ -217,7 +210,6 @@ function mostrarCarrito() {
         imagen.src = producto.imagen;
         imagen.alt = producto.nombre;
         imagen.className = "img-fluid";
-
         columnaImagen.appendChild(imagen);
 
         const columnaDatos = document.createElement("div");
@@ -235,11 +227,12 @@ function mostrarCarrito() {
         controles.className = "grht-cart-controls";
 
         const disminuir = crearBoton("−", "decrease", indice, "grht-cart-quantity");
+
         const cantidad = document.createElement("span");
         cantidad.className = "grht-cart-quantity-value";
         cantidad.textContent = producto.cantidad;
-        const aumentar = crearBoton("+", "increase", indice, "grht-cart-quantity");
 
+        const aumentar = crearBoton("+", "increase", indice, "grht-cart-quantity");
         controles.append(disminuir, cantidad, aumentar);
 
         const subtotalElemento = document.createElement("strong");
@@ -252,14 +245,7 @@ function mostrarCarrito() {
         icono.className = "bi bi-trash";
         eliminar.prepend(icono, " ");
 
-        columnaDatos.append(
-            nombre,
-            precio,
-            controles,
-            subtotalElemento,
-            eliminar
-        );
-
+        columnaDatos.append(nombre, precio, controles, subtotalElemento, eliminar);
         fila.append(columnaImagen, columnaDatos);
         tarjeta.appendChild(fila);
         contenedor.appendChild(tarjeta);
@@ -270,7 +256,6 @@ function mostrarCarrito() {
 
 function cambiarCantidad(indice, cambio) {
     const producto = grhtCart[indice];
-
     if (!producto) return;
 
     producto.cantidad += cambio;
@@ -336,7 +321,6 @@ function mostrarComentarios() {
 
         const icono = document.createElement("i");
         icono.className = "bi bi-chat-left-quote fs-4";
-
         encabezado.append(nombre, icono);
 
         const fecha = document.createElement("small");
@@ -354,7 +338,6 @@ function mostrarComentarios() {
 
         const iconoEliminar = document.createElement("i");
         iconoEliminar.className = "bi bi-trash";
-
         boton.append(iconoEliminar, " Eliminar");
 
         tarjeta.append(encabezado, fecha, texto, boton);
@@ -382,7 +365,6 @@ function agregarComentario(formulario) {
 
 function eliminarComentario(indice) {
     if (!grhtComments[indice]) return;
-
     if (!confirm("¿Deseas eliminar este comentario?")) return;
 
     grhtComments.splice(indice, 1);
@@ -401,30 +383,35 @@ function procesarReclamacion(evento) {
 }
 
 document.addEventListener("submit", evento => {
-    if (evento.target.id === "grht-search-form") {
+    const formulario = evento.target;
+
+    if (formulario.id === "grht-search-form") {
         evento.preventDefault();
         buscarProducto();
     }
 
-    if (evento.target.id === "grht-comments-form") {
+    if (formulario.id === "grht-comments-form") {
         evento.preventDefault();
-        agregarComentario(evento.target);
+        agregarComentario(formulario);
     }
 
-    if (evento.target.id === "grht-complaints-form") {
+    if (formulario.id === "grht-complaints-form") {
         procesarReclamacion(evento);
     }
 });
 
 document.addEventListener("click", evento => {
-    const filtro = evento.target.closest("[data-category-filter]");
+    const objetivo = evento.target;
+    if (!(objetivo instanceof Element)) return;
+
+    const filtro = objetivo.closest("[data-category-filter]");
 
     if (filtro) {
         filtrarCategoria(filtro.dataset.categoryFilter, filtro);
         return;
     }
 
-    const botonCompra = evento.target.closest(".grht-card .btn-solid");
+    const botonCompra = objetivo.closest(".grht-card .btn-solid");
 
     if (botonCompra) {
         evento.preventDefault();
@@ -432,7 +419,7 @@ document.addEventListener("click", evento => {
         return;
     }
 
-    const accionCarrito = evento.target.closest("[data-cart-action]");
+    const accionCarrito = objetivo.closest("[data-cart-action]");
 
     if (accionCarrito) {
         const indice = Number(accionCarrito.dataset.index);
@@ -458,7 +445,7 @@ document.addEventListener("click", evento => {
         return;
     }
 
-    const botonComentario = evento.target.closest("[data-comment-index]");
+    const botonComentario = objetivo.closest("[data-comment-index]");
 
     if (botonComentario) {
         eliminarComentario(Number(botonComentario.dataset.commentIndex));
