@@ -34,6 +34,10 @@ header button, .btn-solid {
     cursor: pointer;
 }
 
+header .bi {
+    font-size: 35px;
+}
+
 header a, footer a {
     margin: 8px;
     color: white;
