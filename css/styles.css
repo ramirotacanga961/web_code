@@ -1,0 +1,157 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #1e293b;
+    background-color: #f8fafc;
+}
+
+header, footer {
+    padding: 20px;
+    background-color: #0f172a;
+    color: white;
+}
+
+header {
+    text-align: center;
+}
+
+header img {
+    max-height: 65px;
+}
+
+header input {
+    width: 75%;
+    padding: 9px;
+}
+
+header button, .btn-solid {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0284c7;
+    color: white;
+    cursor: pointer;
+}
+
+header a, footer a {
+    margin: 8px;
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    padding: 15px;
+    background-color: #1e293b;
+    text-align: center;
+}
+
+.grht-navegationmenu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.grht-txtlist {
+    display: inline-block;
+    margin: 10px;
+}
+
+.grht-txtlist a {
+    color: white;
+    text-decoration: none;
+}
+
+.grht-txtlist a:hover,
+header a:hover,
+footer a:hover {
+    color: #38bdf8;
+}
+
+.grht-presentation {
+    padding: 30px;
+    margin: 25px 0;
+    border-radius: 10px;
+    background-color: #e2e8f0;
+}
+
+.grht-text {
+    color: #475569;
+}
+
+.grht-subtitles {
+    border-bottom: 2px solid #0ea5e9;
+}
+
+.grht-card,
+.grht-imageclick,
+article.card {
+    height: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.grht-card img,
+.grht-imageclick img,
+article.card img {
+    width: 100%;
+    max-height: 230px;
+}
+
+.grht-imageclick {
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.grht-imageclick h3,
+.grht-imageclick p {
+    padding: 0 15px;
+}
+
+.grht-complaints,
+.grht-complaints-section,
+.grht-categories {
+    margin: 25px 0;
+}
+
+.grht-complaints form {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-solid:hover {
+    background-color: #0369a1;
+}
+
+.grht-cart-quantity,
+.grht-cart-remove {
+    margin: 5px;
+    padding: 7px 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.grht-cart-quantity {
+    background-color: #e0f2fe;
+}
+
+.grht-cart-remove {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+footer {
+    margin-top: 40px;
+}
+
+footer h3 {
+    color: #38bdf8;
+}
+
+.grht-hero {
+    min-height: 600px;
+    background-image: url("../visual/Robot futurista presenta tecnología neón.jpg");
+    background-position: center;
+    background-size: cover;
+}
