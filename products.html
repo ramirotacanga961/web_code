@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora el catálogo de TecnoNova: celulares, computadoras, audio, gaming y accesorios tecnológicos.">
+    <title>Productos | TecnoNova</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/styles.css">
-
-    <title>Productos | TecnoNova</title>
 </head>
 
 <body>
@@ -19,60 +19,64 @@
 
     <main>
 
-        <section class="container-fluid">
+        <section class="container-fluid" aria-labelledby="grht-products-presentation">
+
             <div class="grht-presentation row align-items-center">
+
                 <div class="col-12 lg:col-6">
-                    <h1>TECNOLOGÍA PARA TODOS LOS DÍAS</h1>
-                    <p>
-                        Encuentra los mejores productos tecnológicos para estudiar,
-                        trabajar y disfrutar.
+                    <h1 id="grht-products-presentation">Tecnología para todos los días</h1>
+                    <p class="grht-text">
+                        Encuentra productos tecnológicos para estudiar, trabajar, comunicarte y disfrutar de tu tiempo libre.
                     </p>
+                    <a href="#catalogo" class="btn-solid">Explorar catálogo</a>
                 </div>
+
                 <div class="col-12 lg:col-6">
-                    <img src="visual\products.jpg" class="img-fluid" alt="Mascota virtual">
+                    <img src="visual/products.jpg" class="img-fluid" alt="Productos tecnológicos de TecnoNova">
                 </div>
+
             </div>
+
         </section>
 
-        <section class="container-fluid">
+        <section class="container-fluid py-5" id="catalogo" aria-labelledby="grht-catalog-title">
 
-            <div class="text-center">
-                <h1>Nuestros productos</h1>
-                <p>
-                    Explora nuestro catálogo y encuentra tecnología,
-                    accesorios y equipos para todas tus necesidades.
+            <header class="text-center mb-4">
+                <h2 id="grht-catalog-title" class="grht-subtitles">
+                    Nuestro catálogo
+                </h2>
+                <p class="grht-text">
+                    Explora nuestras categorías y encuentra los productos que necesitas.
                 </p>
-            </div>
+            </header>
+
 
             <div class="text-center mb-4">
-                <button class="btn btn-outline-primary active" onclick="filtrarCategoria('todos', this)">Todos</button>
-                <button class="btn btn-outline-primary" onclick="filtrarCategoria('celulares', this)">Celulares y
-                    tablets</button>
-                <button class="btn btn-outline-primary"
-                    onclick="filtrarCategoria('computacion', this)">Computación</button>
-                <button class="btn btn-outline-primary" onclick="filtrarCategoria('audio', this)">Audio</button>
-                <button class="btn btn-outline-primary" onclick="filtrarCategoria('gaming', this)">Gaming</button>
-                <button class="btn btn-outline-primary" onclick="filtrarCategoria('fotografia', this)">Fotografía y
-                    streaming</button>
-                <button class="btn btn-outline-primary"
-                    onclick="filtrarCategoria('accesorios', this)">Accesorios</button>
-                <button class="btn btn-outline-primary" onclick="filtrarCategoria('otros', this)">Otros</button>
+                <button type="button" class="btn btn-outline-primary active" data-category-filter="todos">Todos</button>
+                <button type="button" class="btn btn-outline-primary" data-category-filter="celulares">Celulares y tablets</button>
+                <button type="button" class="btn btn-outline-primary" data-category-filter="computacion">Computación</button>
+                <button type="button" class="btn btn-outline-primary" data-category-filter="audio">Audio</button>
+                <button type="button" class="btn btn-outline-primary" data-category-filter="gaming">Gaming</button>
+                <button type="button" class="btn btn-outline-primary" data-category-filter="fotografia">Fotografía y streaming</button>
+                <button type="button" class="btn btn-outline-primary" data-category-filter="accesorios">Accesorios</button>
+                <button type="button" class="btn btn-outline-primary" data-category-filter="otros">Otros</button>
             </div>
 
-            <section class="container-fluid mb-5 grht-categories" data-category="celulares">
 
-                <h2 class="grht-subtitles mb-4">Celulares y tablets</h2>
+            <section class="container-fluid mb-5 grht-categories" data-category="celulares" aria-labelledby="grht-category-celulares">
+
+                <h2 id="grht-category-celulares" class="grht-subtitles mb-4">
+                    Celulares y tablets
+                </h2>
 
                 <div class="row g-4">
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&amp;fit=crop&amp;w=600&amp;q=80"
-                                class="img-fluid" alt="Smartphone con pantalla AMOLED" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&amp;fit=crop&amp;w=600&amp;q=80" class="img-fluid" alt="Smartphone con pantalla AMOLED" loading="lazy">
                             <div class="p-3">
                                 <h3>Smartphone con pantalla AMOLED</h3>
-                                <p>Pantalla AMOLED de alta definición, cámara principal de alta resolución y batería de
-                                    larga duración.</p>
+                                <p>Pantalla AMOLED de alta definición, cámara principal de alta resolución y batería de larga duración.</p>
                                 <p><del>S/ 1,499.00</del></p>
                                 <h5>S/ 1,199.00</h5>
                                 <p>20% de descuento</p>
@@ -83,12 +87,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600" class="img-fluid"
-                                alt="Tablet para entretenimiento" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600" class="img-fluid" alt="Tablet para entretenimiento" loading="lazy">
                             <div class="p-3">
                                 <h3>Tablet para entretenimiento</h3>
-                                <p>Tablet con pantalla táctil para leer, ver contenido multimedia y utilizar
-                                    aplicaciones.</p>
+                                <p>Tablet con pantalla táctil para leer, ver contenido multimedia y utilizar aplicaciones.</p>
                                 <p><del>S/ 1,299.00</del></p>
                                 <h5>S/ 999.00</h5>
                                 <p>23% de descuento</p>
@@ -99,8 +101,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600"
-                                class="img-fluid" alt="Smartphone Android" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600" class="img-fluid" alt="Smartphone Android" loading="lazy">
                             <div class="p-3">
                                 <h3>Smartphone Android</h3>
                                 <p>Equipo móvil para comunicación y productividad.</p>
@@ -111,18 +112,20 @@
                     </article>
 
                 </div>
+
             </section>
 
-            <section class="container-fluid mb-5 grht-categories" data-category="computacion">
+            <section class="container-fluid mb-5 grht-categories" data-category="computacion" aria-labelledby="grht-category-computacion">
 
-                <h2 class="grht-subtitles mb-4">Computación</h2>
+                <h2 id="grht-category-computacion" class="grht-subtitles mb-4">
+                    Computación
+                </h2>
 
                 <div class="row g-4">
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&amp;fit=crop&amp;w=600&amp;q=80"
-                                class="img-fluid" alt="Laptop para estudio y trabajo" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&amp;fit=crop&amp;w=600&amp;q=80" class="img-fluid" alt="Laptop para estudio y trabajo" loading="lazy">
                             <div class="p-3">
                                 <h3>Laptop para estudio y trabajo</h3>
                                 <p>Laptop portátil para tareas académicas, ofimática, navegación y trabajo diario.</p>
@@ -136,12 +139,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600" class="img-fluid"
-                                alt="Laptop para productividad" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600" class="img-fluid" alt="Laptop para productividad" loading="lazy">
                             <div class="p-3">
                                 <h3>Laptop para productividad</h3>
-                                <p>Equipo portátil para estudiar, trabajar con documentos y realizar tareas de
-                                    productividad.</p>
+                                <p>Equipo portátil para estudiar, trabajar con documentos y realizar tareas de productividad.</p>
                                 <p><del>S/ 3,199.00</del></p>
                                 <h5>S/ 2,799.00</h5>
                                 <p>13% de descuento</p>
@@ -152,12 +153,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
-                                class="img-fluid" alt="Monitor Full HD" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600" class="img-fluid" alt="Monitor Full HD" loading="lazy">
                             <div class="p-3">
                                 <h3>Monitor Full HD</h3>
-                                <p>Monitor de resolución Full HD, ideal para ampliar tu espacio de trabajo o disfrutar
-                                    de contenido.</p>
+                                <p>Monitor de resolución Full HD para ampliar tu espacio de trabajo o disfrutar de contenido.</p>
                                 <p><del>S/ 899.00</del></p>
                                 <h5>S/ 699.00</h5>
                                 <p>22% de descuento</p>
@@ -168,12 +167,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600"
-                                class="img-fluid" alt="Teclado mecánico RGB" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600" class="img-fluid" alt="Teclado mecánico RGB" loading="lazy">
                             <div class="p-3">
                                 <h3>Teclado mecánico RGB</h3>
-                                <p>Teclado mecánico con iluminación RGB y teclas de respuesta precisa para jugar o
-                                    trabajar.</p>
+                                <p>Teclado mecánico con iluminación RGB para jugar o trabajar.</p>
                                 <p><del>S/ 249.00</del></p>
                                 <h5>S/ 179.00</h5>
                                 <p>28% de descuento</p>
@@ -184,12 +181,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?w=600"
-                                class="img-fluid" alt="Mouse inalámbrico ergonómico" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?w=600" class="img-fluid" alt="Mouse inalámbrico ergonómico" loading="lazy">
                             <div class="p-3">
                                 <h3>Mouse inalámbrico ergonómico</h3>
-                                <p>Mouse inalámbrico de diseño ergonómico para trabajar cómodamente en tu computadora.
-                                </p>
+                                <p>Mouse inalámbrico de diseño ergonómico para trabajar cómodamente.</p>
                                 <p><del>S/ 129.00</del></p>
                                 <h5>S/ 89.00</h5>
                                 <p>31% de descuento</p>
@@ -199,22 +194,23 @@
                     </article>
 
                 </div>
+
             </section>
 
-            <section class="container-fluid mb-5 grht-categories" data-category="audio">
+            <section class="container-fluid mb-5 grht-categories" data-category="audio" aria-labelledby="grht-category-audio">
 
-                <h2 class="grht-subtitles mb-4">Audio</h2>
+                <h2 id="grht-category-audio" class="grht-subtitles mb-4">
+                    Audio
+                </h2>
 
                 <div class="row g-4">
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&amp;fit=crop&amp;w=600&amp;q=80"
-                                class="img-fluid" alt="Audífonos Bluetooth" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&amp;fit=crop&amp;w=600&amp;q=80" class="img-fluid" alt="Audífonos Bluetooth" loading="lazy">
                             <div class="p-3">
                                 <h3>Audífonos Bluetooth</h3>
-                                <p>Audífonos inalámbricos con conexión Bluetooth, diseño cómodo y sonido estéreo para
-                                    música y llamadas.</p>
+                                <p>Audífonos inalámbricos con conexión Bluetooth, diseño cómodo y sonido estéreo.</p>
                                 <p><del>S/ 299.00</del></p>
                                 <h5>S/ 219.00</h5>
                                 <p>27% de descuento</p>
@@ -225,12 +221,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1599669454699-248893623440?w=600"
-                                class="img-fluid" alt="Headset gamer con micrófono" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1599669454699-248893623440?w=600" class="img-fluid" alt="Headset gamer con micrófono" loading="lazy">
                             <div class="p-3">
                                 <h3>Headset gamer con micrófono</h3>
-                                <p>Audífonos para videojuegos con micrófono integrado para comunicarte durante tus
-                                    partidas.</p>
+                                <p>Audífonos para videojuegos con micrófono integrado.</p>
                                 <p><del>S/ 279.00</del></p>
                                 <h5>S/ 199.00</h5>
                                 <p>29% de descuento</p>
@@ -241,11 +235,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600"
-                                class="img-fluid" alt="Parlante Bluetooth" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600" class="img-fluid" alt="Parlante Bluetooth" loading="lazy">
                             <div class="p-3">
                                 <h3>Parlante Bluetooth</h3>
-                                <p>Altavoz portátil para escuchar música.</p>
+                                <p>Altavoz portátil para escuchar música en cualquier lugar.</p>
                                 <h5>S/ 159.00</h5>
                                 <a href="shopping.html" class="btn-solid">Comprar</a>
                             </div>
@@ -254,8 +247,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600"
-                                class="img-fluid" alt="Micrófono de condensador" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=600" class="img-fluid" alt="Micrófono de condensador" loading="lazy">
                             <div class="p-3">
                                 <h3>Micrófono de condensador</h3>
                                 <p>Micrófono para grabaciones, producción de audio y transmisiones.</p>
@@ -267,13 +259,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img class="img-fluid"
-                                src="https://cdn.sanity.io/images/5skqgt41/production/f6da36b8eb439731a86ad6ae18add4b3909b7dc8-1000x1000.jpg?auto=format&w=1200"
-                                alt="Parlantes de monitoreo" loading="lazy">
+                            <img src="https://cdn.sanity.io/images/5skqgt41/production/f6da36b8eb439731a86ad6ae18add4b3909b7dc8-1000x1000.jpg?auto=format&amp;w=1200" class="img-fluid" alt="Parlantes de monitoreo" loading="lazy">
                             <div class="p-3">
                                 <h3>Parlantes de monitoreo</h3>
-                                <p>Altavoces diseñados para escuchar y controlar el sonido durante grabaciones y
-                                    producción musical.</p>
+                                <p>Altavoces para escuchar y controlar el sonido durante grabaciones y producción musical.</p>
                                 <h5>S/ 599.00</h5>
                                 <a href="shopping.html" class="btn-solid">Comprar</a>
                             </div>
@@ -281,22 +270,23 @@
                     </article>
 
                 </div>
+
             </section>
 
-            <section class="container-fluid mb-5 grht-categories" data-category="gaming">
+            <section class="container-fluid mb-5 grht-categories" data-category="gaming" aria-labelledby="grht-category-gaming">
 
-                <h2 class="grht-subtitles mb-4">Gaming</h2>
+                <h2 id="grht-category-gaming" class="grht-subtitles mb-4">
+                    Gaming
+                </h2>
 
                 <div class="row g-4">
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" class="img-fluid"
-                                alt="Consola de videojuegos retro" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" class="img-fluid" alt="Consola de videojuegos retro" loading="lazy">
                             <div class="p-3">
                                 <h3>Consola de videojuegos retro</h3>
-                                <p>Consola de videojuegos de estilo clásico para disfrutar de entretenimiento en casa.
-                                </p>
+                                <p>Consola de estilo clásico para disfrutar de videojuegos en casa.</p>
                                 <p><del>S/ 1,899.00</del></p>
                                 <h5>S/ 1,599.00</h5>
                                 <p>16% de descuento</p>
@@ -307,8 +297,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=600"
-                                class="img-fluid" alt="Control gamer" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=600" class="img-fluid" alt="Control inalámbrico gamer" loading="lazy">
                             <div class="p-3">
                                 <h3>Control inalámbrico gamer</h3>
                                 <p>Control ergonómico para videojuegos.</p>
@@ -320,8 +309,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600"
-                                class="img-fluid" alt="Mouse gamer RGB" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600" class="img-fluid" alt="Mouse gamer RGB" loading="lazy">
                             <div class="p-3">
                                 <h3>Mouse gamer RGB</h3>
                                 <p>Mouse de precisión para videojuegos.</p>
@@ -333,12 +321,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=600"
-                                class="img-fluid" alt="Visor de realidad virtual" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=600" class="img-fluid" alt="Visor de realidad virtual" loading="lazy">
                             <div class="p-3">
                                 <h3>Visor de realidad virtual</h3>
-                                <p>Dispositivo de realidad virtual para explorar videojuegos y experiencias inmersivas.
-                                </p>
+                                <p>Dispositivo para explorar videojuegos y experiencias inmersivas.</p>
                                 <h5>S/ 2,499.00</h5>
                                 <a href="shopping.html" class="btn-solid">Comprar</a>
                             </div>
@@ -347,12 +333,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-4 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1605901309584-818e25960a8f?w=600"
-                                class="img-fluid" alt="Controles de realidad virtual" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1605901309584-818e25960a8f?w=600" class="img-fluid" alt="Controles de realidad virtual" loading="lazy">
                             <div class="p-3">
                                 <h3>Controles de realidad virtual</h3>
-                                <p>Mandos de movimiento para interactuar con juegos y aplicaciones de realidad virtual.
-                                </p>
+                                <p>Mandos de movimiento para juegos y aplicaciones de realidad virtual.</p>
                                 <h5>S/ 499.00</h5>
                                 <a href="shopping.html" class="btn-solid">Comprar</a>
                             </div>
@@ -360,18 +344,20 @@
                     </article>
 
                 </div>
+
             </section>
 
-            <section class="container-fluid mb-5 grht-categories" data-category="fotografia">
+            <section class="container-fluid mb-5 grht-categories" data-category="fotografia" aria-labelledby="grht-category-fotografia">
 
-                <h2 class="grht-subtitles mb-4">Fotografía y streaming</h2>
+                <h2 id="grht-category-fotografia" class="grht-subtitles mb-4">
+                    Fotografía y streaming
+                </h2>
 
                 <div class="row g-4">
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600"
-                                class="img-fluid" alt="Cámara digital" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" class="img-fluid" alt="Cámara digital" loading="lazy">
                             <div class="p-3">
                                 <h3>Cámara digital</h3>
                                 <p>Equipo fotográfico para capturar imágenes y crear contenido.</p>
@@ -383,8 +369,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1617005082133-548c4dd27f35?w=600"
-                                class="img-fluid" alt="Lente fotográfico" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1617005082133-548c4dd27f35?w=600" class="img-fluid" alt="Lente fotográfico" loading="lazy">
                             <div class="p-3">
                                 <h3>Lente fotográfico</h3>
                                 <p>Lente para mejorar la captura de fotografías.</p>
@@ -396,8 +381,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=600"
-                                class="img-fluid" alt="Trípode para cámara" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=600" class="img-fluid" alt="Trípode para cámara" loading="lazy">
                             <div class="p-3">
                                 <h3>Trípode para cámara</h3>
                                 <p>Soporte ajustable para fotografía y video.</p>
@@ -409,8 +393,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=600"
-                                class="img-fluid" alt="Cámara web Full HD" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=600" class="img-fluid" alt="Cámara web Full HD" loading="lazy">
                             <div class="p-3">
                                 <h3>Cámara web Full HD</h3>
                                 <p>Webcam para videollamadas, grabaciones y streaming.</p>
@@ -422,8 +405,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600"
-                                class="img-fluid" alt="Aro de luz LED" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600" class="img-fluid" alt="Aro de luz LED" loading="lazy">
                             <div class="p-3">
                                 <h3>Aro de luz LED</h3>
                                 <p>Iluminación para grabaciones, videollamadas y transmisiones.</p>
@@ -434,22 +416,23 @@
                     </article>
 
                 </div>
+
             </section>
 
-            <section class="container-fluid mb-5 grht-categories" data-category="accesorios">
+            <section class="container-fluid mb-5 grht-categories" data-category="accesorios" aria-labelledby="grht-category-accesorios">
 
-                <h2 class="grht-subtitles mb-4">Accesorios</h2>
+                <h2 id="grht-category-accesorios" class="grht-subtitles mb-4">
+                    Accesorios
+                </h2>
 
                 <div class="row g-4">
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
-                                class="img-fluid" alt="Smartwatch deportivo" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" class="img-fluid" alt="Smartwatch deportivo" loading="lazy">
                             <div class="p-3">
                                 <h3>Smartwatch deportivo</h3>
-                                <p>Reloj inteligente para consultar notificaciones, registrar actividad física y revisar
-                                    tus entrenamientos.</p>
+                                <p>Reloj inteligente para consultar notificaciones y registrar actividad física.</p>
                                 <p><del>S/ 399.00</del></p>
                                 <h5>S/ 299.00</h5>
                                 <p>25% de descuento</p>
@@ -460,12 +443,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600"
-                                class="img-fluid" alt="Batería portátil" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600" class="img-fluid" alt="Batería portátil" loading="lazy">
                             <div class="p-3">
                                 <h3>Batería portátil</h3>
-                                <p>Batería externa para recargar tus dispositivos móviles cuando estés fuera de casa.
-                                </p>
+                                <p>Batería externa para recargar dispositivos móviles fuera de casa.</p>
                                 <p><del>S/ 179.00</del></p>
                                 <h5>S/ 129.00</h5>
                                 <p>28% de descuento</p>
@@ -476,8 +457,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600" class="img-fluid"
-                                alt="Cargador rápido USB-C" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600" class="img-fluid" alt="Cargador rápido USB-C" loading="lazy">
                             <div class="p-3">
                                 <h3>Cargador rápido USB-C</h3>
                                 <p>Cargador para teléfonos y dispositivos compatibles.</p>
@@ -489,11 +469,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=600"
-                                class="img-fluid" alt="Soporte para laptop" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=600" class="img-fluid" alt="Soporte para laptop" loading="lazy">
                             <div class="p-3">
                                 <h3>Soporte para laptop</h3>
-                                <p>Base para mejorar la posición del equipo.</p>
+                                <p>Base para mejorar la posición del equipo durante su uso.</p>
                                 <h5>S/ 89.00</h5>
                                 <a href="shopping.html" class="btn-solid">Comprar</a>
                             </div>
@@ -502,8 +481,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600"
-                                class="img-fluid" alt="Control remoto para dron" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600" class="img-fluid" alt="Control remoto para dron" loading="lazy">
                             <div class="p-3">
                                 <h3>Control remoto para dron</h3>
                                 <p>Control inalámbrico para manejar drones y configurar sus funciones de vuelo.</p>
@@ -514,18 +492,20 @@
                     </article>
 
                 </div>
+
             </section>
 
-            <section class="container-fluid mb-5 grht-categories" data-category="otros">
+            <section class="container-fluid mb-5 grht-categories" data-category="otros" aria-labelledby="grht-category-otros">
 
-                <h2 class="grht-subtitles mb-4">Otros productos</h2>
+                <h2 id="grht-category-otros" class="grht-subtitles mb-4">
+                    Otros productos
+                </h2>
 
                 <div class="row g-4">
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
-                                class="img-fluid" alt="Impresora multifuncional" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600" class="img-fluid" alt="Impresora multifuncional" loading="lazy">
                             <div class="p-3">
                                 <h3>Impresora multifuncional</h3>
                                 <p>Equipo para imprimir documentos e imágenes.</p>
@@ -537,8 +517,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600"
-                                class="img-fluid" alt="Cartuchos de tinta" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600" class="img-fluid" alt="Cartuchos de tinta" loading="lazy">
                             <div class="p-3">
                                 <h3>Cartuchos de tinta</h3>
                                 <p>Consumibles para impresoras compatibles.</p>
@@ -550,8 +529,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600"
-                                class="img-fluid" alt="Dron con cámara" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600" class="img-fluid" alt="Dron con cámara" loading="lazy">
                             <div class="p-3">
                                 <h3>Dron con cámara</h3>
                                 <p>Dron para fotografía y grabación aérea.</p>
@@ -563,9 +541,7 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img class="img-fluid"
-                                src="https://www.quadxdrones.com/cdn/shop/files/400fb4957cd1a15ec6ad2f64a12636df_origin_2048x.jpg?v=1759914684"
-                                alt="Batería para dron" loading="lazy">
+                            <img src="https://www.quadxdrones.com/cdn/shop/files/400fb4957cd1a15ec6ad2f64a12636df_origin_2048x.jpg?v=1759914684" class="img-fluid" alt="Batería para dron" loading="lazy">
                             <div class="p-3">
                                 <h3>Batería para dron</h3>
                                 <p>Batería adicional para ampliar el tiempo de vuelo.</p>
@@ -577,11 +553,10 @@
 
                     <article class="col-12 sm:col-6 lg:col-3 grht-product">
                         <div class="grht-card h-100">
-                            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600"
-                                class="img-fluid" alt="Papel para impresión" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=600" class="img-fluid" alt="Papel para impresión" loading="lazy">
                             <div class="p-3">
                                 <h3>Papel para impresión</h3>
-                                <p>Papel blanco para imprimir documentos, fotografías y trabajos académicos.</p>
+                                <p>Papel blanco para documentos, fotografías y trabajos académicos.</p>
                                 <h5>S/ 29.00</h5>
                                 <a href="shopping.html" class="btn-solid">Comprar</a>
                             </div>
@@ -589,29 +564,36 @@
                     </article>
 
                 </div>
+
             </section>
 
-            <p id="grht-no-results" class="text-center mt-4" style="display: none;">
-                No se encontraron productos.
+            <p id="grht-no-results" class="text-center mt-4">
+                No se encontraron productos que coincidan con tu búsqueda.
             </p>
 
         </section>
 
-        <section class="container-fluid text-center py-5">
-            <h2 class="grht-subtitles">Descubre más productos</h2>
+        <section class="container-fluid text-center py-5" aria-labelledby="grht-more-products">
+
+            <h2 id="grht-more-products" class="grht-subtitles">
+                ¿Buscas promociones?
+            </h2>
+
             <p class="grht-text">
-                Explora nuestras ofertas y encuentra promociones especiales.
+                Visita nuestra sección de descuentos y descubre otras opciones para tu próxima compra.
             </p>
-            <a href="discounts.html" class="btn-solid">Ver ofertas</a>
+
+            <a href="discounts.html" class="btn-solid">
+                Ver ofertas
+            </a>
+
         </section>
 
     </main>
 
     <div id="footer"></div>
 
-    <script type="module"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/components.js"></script>
 
 </body>

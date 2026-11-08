@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Libro de Reclamaciones | TecnoNova</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/styles.css">
-
-    <title>Reclamaciones | TecnoNova</title>
 </head>
 
 <body>
@@ -19,40 +19,45 @@
 
     <main class="container py-4">
 
-        <section class="grht-presentation container-fluid">
+        <section class="grht-presentation container-fluid" aria-labelledby="complaints-title">
+
             <div class="row align-items-center">
+
                 <div class="col-12 lg:col-6">
-                    <h1>Libro de Reclamaciones</h1>
+                    <h1 id="complaints-title">Libro de Reclamaciones</h1>
 
                     <p class="grht-text">
-                        En TecnoNova nos interesa conocer tu experiencia.
-                        Si tienes algún inconveniente con nuestros productos
-                        o servicios, puedes presentar una queja o reclamo
-                        mediante el siguiente formulario.
+                        En TecnoNova nos interesa conocer tu experiencia. Si tienes algún inconveniente con nuestros productos o servicios, puedes presentar una queja o reclamo mediante el siguiente formulario.
                     </p>
                 </div>
 
                 <div class="col-12 lg:col-6">
-                    <img class="img-fluid" src="visual\complaints.jpg" alt="Mascota virtual de TecnoNova">
+                    <img class="img-fluid" src="visual/complaints.jpg" alt="Atención al cliente de TecnoNova">
                 </div>
+
             </div>
+
         </section>
 
-        <section class="grht-complaints my-5">
+        <section class="grht-complaints my-5" aria-labelledby="form-title">
 
             <div class="text-center mb-4">
-                <h2>Formulario de reclamaciones</h2>
+
+                <h2 id="form-title" class="grht-subtitles">
+                    Formulario de reclamaciones
+                </h2>
+
                 <p class="grht-text">
-                    Completa los siguientes datos para registrar tu solicitud.
-                    Los campos con (*) son obligatorios.
+                    Completa los siguientes datos para registrar tu solicitud. Los campos con (*) son obligatorios.
                 </p>
+
             </div>
 
             <form class="card p-4" id="grht-complaints-form">
 
-                <section class="grht-complaints-section mb-4">
+                <section class="grht-complaints-section mb-4" aria-labelledby="customer-title">
 
-                    <h3>Datos del cliente</h3>
+                    <h3 id="customer-title">Datos del cliente</h3>
                     <hr>
 
                     <div class="row g-3">
@@ -61,19 +66,22 @@
                             <label for="grht-name" class="form-label">
                                 Nombre completo *
                             </label>
-                            <input type="text" class="form-control" id="grht-name" name="nombre"
-                                placeholder="Ingresa tus nombres y apellidos" required>
+
+                            <input type="text" class="form-control" id="grht-name" name="nombre" placeholder="Ingresa tus nombres y apellidos" autocomplete="name" required>
                         </div>
 
                         <div class="col-12 sm:col-6">
                             <label for="grht-document-type" class="form-label">
                                 Tipo de documento *
                             </label>
+
                             <select class="form-select" id="grht-document-type" name="tipo_documento" required>
+
                                 <option value="">Selecciona una opción</option>
                                 <option value="DNI">DNI</option>
                                 <option value="CE">Carné de extranjería</option>
                                 <option value="Pasaporte">Pasaporte</option>
+
                             </select>
                         </div>
 
@@ -81,40 +89,41 @@
                             <label for="grht-document" class="form-label">
                                 Número de documento *
                             </label>
-                            <input type="text" class="form-control" id="grht-document" name="documento"
-                                placeholder="Número de documento" required>
+
+                            <input type="text" class="form-control" id="grht-document" name="documento" placeholder="Número de documento" required>
                         </div>
 
                         <div class="col-12 sm:col-6">
                             <label for="grht-email" class="form-label">
                                 Correo electrónico *
                             </label>
-                            <input type="email" class="form-control" id="grht-email" name="correo"
-                                placeholder="ejemplo@correo.com" required>
+
+                            <input type="email" class="form-control" id="grht-email" name="correo" placeholder="ejemplo@correo.com" autocomplete="email" required>
                         </div>
 
                         <div class="col-12 sm:col-6">
                             <label for="grht-phone" class="form-label">
                                 Teléfono *
                             </label>
-                            <input type="tel" class="form-control" id="grht-phone" name="telefono"
-                                placeholder="Número de contacto" required>
+
+                            <input type="tel" class="form-control" id="grht-phone" name="telefono" placeholder="Número de contacto" autocomplete="tel" required>
                         </div>
 
                         <div class="col-12">
                             <label for="grht-address" class="form-label">
                                 Dirección *
                             </label>
-                            <input type="text" class="form-control" id="grht-address" name="direccion"
-                                placeholder="Ingresa tu dirección" required>
+
+                            <input type="text" class="form-control" id="grht-address" name="direccion" placeholder="Ingresa tu dirección" autocomplete="street-address" required>
                         </div>
 
                     </div>
+
                 </section>
 
-                <section class="grht-complaints-section mb-4">
+                <section class="grht-complaints-section mb-4" aria-labelledby="details-title">
 
-                    <h3>Detalles de la reclamación</h3>
+                    <h3 id="details-title">Detalles de la reclamación</h3>
                     <hr>
 
                     <div class="row g-3">
@@ -123,10 +132,13 @@
                             <label for="grht-type" class="form-label">
                                 Tipo de solicitud *
                             </label>
+
                             <select class="form-select" id="grht-type" name="tipo_solicitud" required>
+
                                 <option value="">Selecciona una opción</option>
                                 <option value="Reclamo">Reclamo</option>
                                 <option value="Queja">Queja</option>
+
                             </select>
                         </div>
 
@@ -134,7 +146,9 @@
                             <label for="grht-product" class="form-label">
                                 Producto o servicio *
                             </label>
+
                             <select class="form-select" id="grht-product" name="producto" required>
+
                                 <option value="">Selecciona una categoría</option>
                                 <option value="Celulares y tablets">Celulares y tablets</option>
                                 <option value="Computación">Computación</option>
@@ -143,6 +157,7 @@
                                 <option value="Fotografía y streaming">Fotografía y streaming</option>
                                 <option value="Accesorios">Accesorios</option>
                                 <option value="Otros">Otros</option>
+
                             </select>
                         </div>
 
@@ -150,14 +165,15 @@
                             <label for="grht-order" class="form-label">
                                 Número de pedido
                             </label>
-                            <input type="text" class="form-control" id="grht-order" name="pedido"
-                                placeholder="Ejemplo: TN-000123">
+
+                            <input type="text" class="form-control" id="grht-order" name="pedido" placeholder="Ejemplo: TN-000123">
                         </div>
 
                         <div class="col-12 sm:col-6">
                             <label for="grht-date" class="form-label">
                                 Fecha de compra
                             </label>
+
                             <input type="date" class="form-control" id="grht-date" name="fecha_compra">
                         </div>
 
@@ -165,63 +181,66 @@
                             <label for="grht-description" class="form-label">
                                 Descripción de los hechos *
                             </label>
-                            <textarea class="form-control" id="grht-description" name="descripcion" rows="6"
-                                placeholder="Describe detalladamente el problema..." required></textarea>
+
+                            <textarea class="form-control" id="grht-description" name="descripcion" rows="6" placeholder="Describe detalladamente el problema..." required></textarea>
                         </div>
 
                         <div class="col-12">
                             <label for="grht-solution" class="form-label">
                                 Solución esperada *
                             </label>
-                            <textarea class="form-control" id="grht-solution" name="solucion" rows="3"
-                                placeholder="¿Qué solución esperas recibir?" required></textarea>
+
+                            <textarea class="form-control" id="grht-solution" name="solucion" rows="3" placeholder="¿Qué solución esperas recibir?" required></textarea>
                         </div>
 
                     </div>
+
                 </section>
 
-                <section class="grht-complaints-section">
+                <section class="grht-complaints-section" aria-labelledby="confirmation-title">
 
-                    <h3>Confirmación</h3>
+                    <h3 id="confirmation-title">Confirmación</h3>
                     <hr>
 
                     <p class="grht-text">
-                        Verifica que la información ingresada sea correcta
-                        antes de enviar tu solicitud.
+                        Verifica que la información ingresada sea correcta antes de enviar tu solicitud.
                     </p>
 
                     <div class="form-check mb-4">
-                        <input class="form-check-input" type="checkbox" id="grht-confirmation" name="confirmacion"
-                            required>
+
+                        <input class="form-check-input" type="checkbox" id="grht-confirmation" name="confirmacion" required>
 
                         <label class="form-check-label" for="grht-confirmation">
                             Declaro que la información proporcionada es verdadera.
                         </label>
+
                     </div>
 
                     <div class="d-flex flex-wrap gap-3">
+
                         <button type="reset" class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-counterclockwise"></i>
+                            <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
                             Limpiar
                         </button>
 
                         <button type="submit" class="btn-solid">
-                            <i class="bi bi-send"></i>
+                            <i class="bi bi-send" aria-hidden="true"></i>
                             Enviar reclamación
                         </button>
+
                     </div>
 
                 </section>
 
             </form>
+
         </section>
 
     </main>
 
     <div id="footer"></div>
 
-    <script type="module"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="js/components.js"></script>
 

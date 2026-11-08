@@ -6,37 +6,60 @@ const componentes = {
 
 let busquedaActual = "";
 let categoriaSeleccionada = "todos";
-let grhtCart = JSON.parse(localStorage.getItem("grhtCart")) || [];
+let grhtCart = cargarDatos("grhtCart");
+let grhtComments = cargarDatos("grhtComments");
+
+function cargarDatos(clave) {
+    try {
+        const datos = JSON.parse(localStorage.getItem(clave));
+        return Array.isArray(datos) ? datos : [];
+    } catch {
+        return [];
+    }
+}
+
+function guardarDatos(clave, datos) {
+    try {
+        localStorage.setItem(clave, JSON.stringify(datos));
+    } catch {
+        alert("No se pudieron guardar los datos en este navegador.");
+    }
+}
 
 async function cargarComponentes() {
     for (const [id, archivo] of Object.entries(componentes)) {
         const elemento = document.getElementById(id);
 
-        if (elemento) {
-            try {
-                const respuesta = await fetch(archivo);
-                if (!respuesta.ok) throw new Error(`No se pudo cargar ${archivo}`);
-                elemento.innerHTML = await respuesta.text();
-            } catch (error) {
-                console.error(error);
+        if (!elemento) continue;
+
+        try {
+            const respuesta = await fetch(archivo);
+
+            if (!respuesta.ok) {
+                throw new Error(`No se pudo cargar ${archivo}`);
             }
+
+            elemento.innerHTML = await respuesta.text();
+        } catch (error) {
+            console.error(error);
         }
     }
 
     const parametros = new URLSearchParams(window.location.search);
-    const busqueda = parametros.get("buscar");
+    busquedaActual = parametros.get("buscar") || "";
 
-    if (busqueda !== null) {
-        busquedaActual = busqueda;
-        const campo = document.getElementById("busqueda");
-        if (campo) campo.value = busqueda;
+    const campo = document.getElementById("busqueda");
+
+    if (campo) {
+        campo.value = busquedaActual;
     }
 
     actualizarCatalogo();
 }
 
 function buscarProducto() {
-    const busqueda = document.getElementById("busqueda")?.value.trim() || "";
+    const campo = document.getElementById("busqueda");
+    const busqueda = campo ? .value.trim() || "";
 
     if (!window.location.pathname.endsWith("products.html")) {
         window.location.href = "products.html?buscar=" + encodeURIComponent(busqueda);
@@ -50,11 +73,10 @@ function buscarProducto() {
 function filtrarCategoria(categoria, boton) {
     categoriaSeleccionada = categoria;
 
-    document.querySelectorAll(".btn-outline-primary").forEach(btn => {
-        btn.classList.remove("active");
+    document.querySelectorAll("[data-category-filter]").forEach(elemento => {
+        elemento.classList.toggle("active", elemento === boton);
     });
 
-    boton.classList.add("active");
     actualizarCatalogo();
 }
 
@@ -63,16 +85,20 @@ function actualizarCatalogo() {
     let encontrados = 0;
 
     secciones.forEach(seccion => {
-        const coincide = categoriaSeleccionada === "todos" ||
+        const coincideCategoria =
+            categoriaSeleccionada === "todos" ||
             seccion.dataset.category === categoriaSeleccionada;
 
         let visibles = 0;
 
         seccion.querySelectorAll(".grht-product").forEach(producto => {
-            const mostrar = coincide &&
-                producto.textContent.toLowerCase().includes(busquedaActual.toLowerCase());
+            const coincideBusqueda = producto.textContent
+                .toLowerCase()
+                .includes(busquedaActual.toLowerCase());
 
-            producto.style.display = mostrar ? "" : "none";
+            const mostrar = coincideCategoria && coincideBusqueda;
+
+            producto.hidden = !mostrar;
 
             if (mostrar) {
                 visibles++;
@@ -80,159 +106,219 @@ function actualizarCatalogo() {
             }
         });
 
-        seccion.style.display = visibles ? "" : "none";
+        seccion.hidden = visibles === 0;
     });
 
     const mensaje = document.getElementById("grht-no-results");
 
     if (mensaje) {
-        mensaje.style.display = encontrados ? "none" : "block";
+        mensaje.hidden = encontrados > 0;
     }
 }
 
-function grhtSaveCart() {
-    localStorage.setItem("grhtCart", JSON.stringify(grhtCart));
+function guardarCarrito() {
+    guardarDatos("grhtCart", grhtCart);
 }
 
-document.addEventListener("click", e => {
-    const boton = e.target.closest(".grht-card .btn-solid");
-    if (!boton) return;
+function obtenerPrecio(tarjeta) {
+    const precioPrincipal = tarjeta.querySelector("h5");
 
+    if (precioPrincipal) {
+        return Number(precioPrincipal.textContent.replace(/[^\d.]/g, ""));
+    }
+
+    const precios = [...tarjeta.querySelectorAll("p")];
+
+    const precio = precios.find(elemento =>
+        /S\/\s*[\d,.]+/.test(elemento.textContent) &&
+        !elemento.querySelector("del") &&
+        !elemento.closest("del")
+    );
+
+    return precio ?
+        Number(precio.textContent.replace(/[^\d.]/g, "")) :
+        NaN;
+}
+
+function agregarAlCarrito(boton) {
     const tarjeta = boton.closest(".grht-card");
     if (!tarjeta) return;
 
-    if (boton.tagName === "A" && !boton.getAttribute("href")?.includes("shopping.html")) return;
-    if (boton.tagName !== "A" && boton.tagName !== "BUTTON") return;
+    const nombre = tarjeta.querySelector("h3") ? .textContent.trim();
+    const imagen = tarjeta.querySelector("img") ? .src;
+    const precio = obtenerPrecio(tarjeta);
 
-    e.preventDefault();
-
-    const nombre = tarjeta.querySelector("h3")?.textContent.trim();
-    const imagen = tarjeta.querySelector("img")?.src;
-    const precioElemento = tarjeta.querySelector("h5") ||
-        tarjeta.querySelector("div.d-flex.flex-column > div > p:nth-of-type(2)");
-
-    if (!nombre || !imagen || !precioElemento) return;
-
-    const precio = Number(precioElemento.textContent.replace(/[^\d.]/g, ""));
-    if (!Number.isFinite(precio)) return;
-
-    const id = nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    const producto = grhtCart.find(p => p.id === id);
-
-    if (producto) {
-        producto.cantidad++;
-    } else {
-        grhtCart.push({ id, nombre, imagen, precio, cantidad: 1 });
+    if (!nombre || !imagen || !Number.isFinite(precio) || precio <= 0) {
+        alert("No se pudo identificar correctamente el producto.");
+        return;
     }
 
-    grhtSaveCart();
-    window.location.href = "shopping.html";
-});
+    const id = nombre.toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
 
-function grhtShowCart() {
+    const existente = grhtCart.find(producto => producto.id === id);
+
+    if (existente) {
+        existente.cantidad++;
+    } else {
+        grhtCart.push({
+            id,
+            nombre,
+            imagen,
+            precio,
+            cantidad: 1
+        });
+    }
+
+    guardarCarrito();
+    window.location.href = "shopping.html";
+}
+
+function crearBoton(texto, accion, indice, clase) {
+    const boton = document.createElement("button");
+
+    boton.type = "button";
+    boton.className = clase;
+    boton.textContent = texto;
+    boton.dataset.cartAction = accion;
+    boton.dataset.index = indice;
+
+    return boton;
+}
+
+function mostrarCarrito() {
     const contenedor = document.getElementById("grht-cart-products");
     const totalElemento = document.getElementById("grht-cart-total");
     const mensajeVacio = document.getElementById("grht-cart-empty");
 
     if (!contenedor || !totalElemento || !mensajeVacio) return;
 
-    contenedor.innerHTML = "";
+    contenedor.replaceChildren();
+
     let total = 0;
 
-    mensajeVacio.style.display = grhtCart.length ? "none" : "block";
+    mensajeVacio.hidden = grhtCart.length > 0;
 
     grhtCart.forEach((producto, indice) => {
         const subtotal = producto.precio * producto.cantidad;
         total += subtotal;
 
-        contenedor.innerHTML += `
-            <div class="grht-cart-item card p-3 mb-3">
-                <div class="row align-items-center">
-                    <div class="col-4 col-md-2">
-                        <img src="${producto.imagen}" class="img-fluid"
-                            alt="${producto.nombre}">
-                    </div>
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "grht-cart-item card p-3 mb-3";
 
-                    <div class="col">
-                        <h3 class="grht-cart-product-title">${producto.nombre}</h3>
-                        <p class="grht-cart-product-price">
-                            Precio: S/ ${producto.precio.toFixed(2)}
-                        </p>
+        const fila = document.createElement("div");
+        fila.className = "row align-items-center";
 
-                        <div class="grht-cart-controls">
-                            <button type="button" class="grht-cart-quantity"
-                                onclick="grhtChangeQuantity(${indice}, -1)">−</button>
+        const columnaImagen = document.createElement("div");
+        columnaImagen.className = "col-4 col-md-2";
 
-                            <span class="grht-cart-quantity-value">${producto.cantidad}</span>
+        const imagen = document.createElement("img");
+        imagen.src = producto.imagen;
+        imagen.alt = producto.nombre;
+        imagen.className = "img-fluid";
 
-                            <button type="button" class="grht-cart-quantity"
-                                onclick="grhtChangeQuantity(${indice}, 1)">+</button>
-                        </div>
+        columnaImagen.appendChild(imagen);
 
-                        <strong class="grht-cart-subtotal">
-                            Subtotal: S/ ${subtotal.toFixed(2)}
-                        </strong>
+        const columnaDatos = document.createElement("div");
+        columnaDatos.className = "col";
 
-                        <button type="button" class="grht-cart-remove"
-                            onclick="grhtRemoveProduct(${indice})">
-                            <i class="bi bi-trash"></i> Eliminar
-                        </button>
-                    </div>
-                </div>
-            </div>`;
+        const nombre = document.createElement("h3");
+        nombre.className = "grht-cart-product-title";
+        nombre.textContent = producto.nombre;
+
+        const precio = document.createElement("p");
+        precio.className = "grht-cart-product-price";
+        precio.textContent = `Precio: S/ ${producto.precio.toFixed(2)}`;
+
+        const controles = document.createElement("div");
+        controles.className = "grht-cart-controls";
+
+        const disminuir = crearBoton("−", "decrease", indice, "grht-cart-quantity");
+        const cantidad = document.createElement("span");
+        cantidad.className = "grht-cart-quantity-value";
+        cantidad.textContent = producto.cantidad;
+        const aumentar = crearBoton("+", "increase", indice, "grht-cart-quantity");
+
+        controles.append(disminuir, cantidad, aumentar);
+
+        const subtotalElemento = document.createElement("strong");
+        subtotalElemento.className = "grht-cart-subtotal";
+        subtotalElemento.textContent = `Subtotal: S/ ${subtotal.toFixed(2)}`;
+
+        const eliminar = crearBoton("Eliminar", "remove", indice, "grht-cart-remove");
+
+        const icono = document.createElement("i");
+        icono.className = "bi bi-trash";
+        eliminar.prepend(icono, " ");
+
+        columnaDatos.append(
+            nombre,
+            precio,
+            controles,
+            subtotalElemento,
+            eliminar
+        );
+
+        fila.append(columnaImagen, columnaDatos);
+        tarjeta.appendChild(fila);
+        contenedor.appendChild(tarjeta);
     });
 
     totalElemento.textContent = `S/ ${total.toFixed(2)}`;
 }
 
-function grhtChangeQuantity(indice, cambio) {
-    grhtCart[indice].cantidad += cambio;
+function cambiarCantidad(indice, cambio) {
+    const producto = grhtCart[indice];
 
-    if (grhtCart[indice].cantidad <= 0) {
+    if (!producto) return;
+
+    producto.cantidad += cambio;
+
+    if (producto.cantidad <= 0) {
         grhtCart.splice(indice, 1);
     }
 
-    grhtSaveCart();
-    grhtShowCart();
+    guardarCarrito();
+    mostrarCarrito();
 }
 
-function grhtRemoveProduct(indice) {
+function eliminarProducto(indice) {
+    if (!grhtCart[indice]) return;
+
     grhtCart.splice(indice, 1);
-    grhtSaveCart();
-    grhtShowCart();
+    guardarCarrito();
+    mostrarCarrito();
 }
 
-function grhtClearCart() {
-    if (grhtCart.length && confirm("¿Deseas vaciar el carrito?")) {
+function vaciarCarrito() {
+    if (!grhtCart.length) return;
+
+    if (confirm("¿Deseas vaciar el carrito?")) {
         grhtCart = [];
-        grhtSaveCart();
-        grhtShowCart();
+        guardarCarrito();
+        mostrarCarrito();
     }
 }
 
-function grhtCheckout() {
-    alert(grhtCart.length
-        ? "La función de pago se implementará posteriormente."
-        : "Tu carrito está vacío.");
+function finalizarCompra() {
+    alert(grhtCart.length ?
+        "La función de pago todavía no está implementada." :
+        "Tu carrito está vacío.");
 }
 
-cargarComponentes();
-grhtShowCart();
-
-let grhtComments = JSON.parse(localStorage.getItem("grhtComments")) || [];
-
-function grhtSaveComments() {
-    localStorage.setItem("grhtComments", JSON.stringify(grhtComments));
+function guardarComentarios() {
+    guardarDatos("grhtComments", grhtComments);
 }
 
-function grhtShowComments() {
+function mostrarComentarios() {
     const contenedor = document.getElementById("grht-comments-list");
     const mensaje = document.getElementById("grht-comments-empty");
 
     if (!contenedor || !mensaje) return;
 
-    contenedor.innerHTML = "";
-    mensaje.style.display = grhtComments.length ? "none" : "block";
+    contenedor.replaceChildren();
+    mensaje.hidden = grhtComments.length > 0;
 
     grhtComments.forEach((comentario, indice) => {
         const columna = document.createElement("div");
@@ -264,8 +350,12 @@ function grhtShowComments() {
         const boton = document.createElement("button");
         boton.type = "button";
         boton.className = "btn btn-outline-danger btn-sm align-self-start";
-        boton.innerHTML = '<i class="bi bi-trash"></i> Eliminar';
-        boton.dataset.index = indice;
+        boton.dataset.commentIndex = indice;
+
+        const iconoEliminar = document.createElement("i");
+        iconoEliminar.className = "bi bi-trash";
+
+        boton.append(iconoEliminar, " Eliminar");
 
         tarjeta.append(encabezado, fecha, texto, boton);
         columna.appendChild(tarjeta);
@@ -273,11 +363,9 @@ function grhtShowComments() {
     });
 }
 
-function grhtAddComment(event) {
-    event.preventDefault();
-
-    const nombre = document.getElementById("grht-comment-name").value.trim();
-    const texto = document.getElementById("grht-comment-text").value.trim();
+function agregarComentario(formulario) {
+    const nombre = document.getElementById("grht-comment-name") ? .value.trim();
+    const texto = document.getElementById("grht-comment-text") ? .value.trim();
 
     if (!nombre || !texto) return;
 
@@ -287,32 +375,98 @@ function grhtAddComment(event) {
         fecha: new Date().toLocaleString("es-PE")
     });
 
-    grhtSaveComments();
-    grhtShowComments();
-
-    document.getElementById("grht-comments-form").reset();
+    guardarComentarios();
+    mostrarComentarios();
+    formulario.reset();
 }
 
-function grhtDeleteComment(indice) {
+function eliminarComentario(indice) {
+    if (!grhtComments[indice]) return;
+
     if (!confirm("¿Deseas eliminar este comentario?")) return;
 
     grhtComments.splice(indice, 1);
-    grhtSaveComments();
-    grhtShowComments();
+    guardarComentarios();
+    mostrarComentarios();
 }
 
-document.addEventListener("submit", event => {
-    if (event.target.id === "grht-comments-form") {
-        grhtAddComment(event);
+function procesarReclamacion(evento) {
+    evento.preventDefault();
+
+    alert(
+        "Este formulario es una demostración. " +
+        "La reclamación no se ha enviado ni registrado. " +
+        "Para recibir solicitudes reales, TecnoNova necesita un servidor conectado."
+    );
+}
+
+document.addEventListener("submit", evento => {
+    if (evento.target.id === "grht-search-form") {
+        evento.preventDefault();
+        buscarProducto();
+    }
+
+    if (evento.target.id === "grht-comments-form") {
+        evento.preventDefault();
+        agregarComentario(evento.target);
+    }
+
+    if (evento.target.id === "grht-complaints-form") {
+        procesarReclamacion(evento);
     }
 });
 
-document.addEventListener("click", event => {
-    const boton = event.target.closest("#grht-comments-list button[data-index]");
+document.addEventListener("click", evento => {
+    const filtro = evento.target.closest("[data-category-filter]");
 
-    if (boton) {
-        grhtDeleteComment(Number(boton.dataset.index));
+    if (filtro) {
+        filtrarCategoria(filtro.dataset.categoryFilter, filtro);
+        return;
+    }
+
+    const botonCompra = evento.target.closest(".grht-card .btn-solid");
+
+    if (botonCompra) {
+        evento.preventDefault();
+        agregarAlCarrito(botonCompra);
+        return;
+    }
+
+    const accionCarrito = evento.target.closest("[data-cart-action]");
+
+    if (accionCarrito) {
+        const indice = Number(accionCarrito.dataset.index);
+
+        switch (accionCarrito.dataset.cartAction) {
+            case "increase":
+                cambiarCantidad(indice, 1);
+                break;
+            case "decrease":
+                cambiarCantidad(indice, -1);
+                break;
+            case "remove":
+                eliminarProducto(indice);
+                break;
+            case "clear":
+                vaciarCarrito();
+                break;
+            case "checkout":
+                finalizarCompra();
+                break;
+        }
+
+        return;
+    }
+
+    const botonComentario = evento.target.closest("[data-comment-index]");
+
+    if (botonComentario) {
+        eliminarComentario(Number(botonComentario.dataset.commentIndex));
     }
 });
 
-grhtShowComments();
+document.addEventListener("DOMContentLoaded", () => {
+    cargarComponentes();
+    mostrarCarrito();
+    mostrarComentarios();
+});

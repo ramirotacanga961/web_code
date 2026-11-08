@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Comentarios | TecnoNova</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/styles.css">
-
-    <title>Comentarios | TecnoNova</title>
 </head>
 
 <body>
@@ -19,74 +19,89 @@
 
     <main class="container py-4">
 
-        <section class="grht-presentation container-fluid">
+        <section class="grht-presentation container-fluid" aria-labelledby="comments-title">
+
             <div class="row align-items-center">
+
                 <div class="col-12 lg:col-6">
-                    <h1>Opiniones de nuestra comunidad</h1>
+                    <h1 id="comments-title">Opiniones de nuestra comunidad</h1>
 
                     <p class="grht-text">
-                        En TecnoNova queremos conocer tu opinión.
-                        Comparte tu experiencia, deja tus comentarios
-                        y conoce lo que otros usuarios piensan de nosotros.
+                        En TecnoNova queremos conocer tu opinión. Comparte tu experiencia, deja tus comentarios y conoce lo que otros usuarios piensan de nosotros.
                     </p>
                 </div>
 
                 <div class="col-12 lg:col-6">
-                    <img class="img-fluid" src="visual\comments.jpg" alt="Mascota virtual de TecnoNova">
+                    <img class="img-fluid" src="visual/comments.jpg" alt="Comunidad de usuarios de TecnoNova">
                 </div>
+
             </div>
+
         </section>
 
-        <section class="container-fluid my-5">
+        <section class="container-fluid my-5" aria-labelledby="form-title">
 
             <div class="row justify-content-center">
+
                 <div class="col-12 col-lg-8">
 
                     <div class="card p-4">
-                        <h2>Deja tu comentario</h2>
+
+                        <h2 id="form-title" class="grht-subtitles mb-4">
+                            Deja tu comentario
+                        </h2>
 
                         <form id="grht-comments-form">
 
                             <div class="mb-3">
+
                                 <label for="grht-comment-name" class="form-label">
                                     Tu nombre
                                 </label>
 
-                                <input type="text" class="form-control" id="grht-comment-name"
-                                    placeholder="Escribe tu nombre" maxlength="50" required>
+                                <input type="text" class="form-control" id="grht-comment-name" placeholder="Escribe tu nombre" maxlength="50" autocomplete="name" required>
+
                             </div>
 
                             <div class="mb-3">
+
                                 <label for="grht-comment-text" class="form-label">
                                     Tu comentario
                                 </label>
 
-                                <textarea class="form-control" id="grht-comment-text" rows="4" maxlength="500"
-                                    placeholder="Comparte tu experiencia con TecnoNova..." required></textarea>
+                                <textarea class="form-control" id="grht-comment-text" rows="4" maxlength="500" placeholder="Comparte tu experiencia con TecnoNova..." required></textarea>
+
                             </div>
 
                             <button type="submit" class="btn-solid">
-                                <i class="bi bi-send"></i>
+                                <i class="bi bi-send" aria-hidden="true"></i>
                                 Publicar comentario
                             </button>
 
                         </form>
+
                     </div>
 
                 </div>
+
             </div>
 
         </section>
 
-        <section class="container-fluid my-5">
+        <section class="container-fluid my-5" aria-labelledby="comments-list-title">
 
-            <h2 class="text-center mb-4">Comentarios de nuestros usuarios</h2>
+            <h2 id="comments-list-title" class="grht-subtitles text-center mb-4">
+                Comentarios de nuestros usuarios
+            </h2>
 
             <div id="grht-comments-empty" class="text-center py-4">
-                <i class="bi bi-chat-square-text fs-1"></i>
+
+                <i class="bi bi-chat-square-text fs-1" aria-hidden="true"></i>
+
                 <p class="grht-text">
                     Todavía no hay comentarios. ¡Sé el primero en compartir tu opinión!
                 </p>
+
             </div>
 
             <div id="grht-comments-list" class="row g-3"></div>
@@ -97,8 +112,7 @@
 
     <div id="footer"></div>
 
-    <script type="module"
-        src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="js/components.js"></script>
 
