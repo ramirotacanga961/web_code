@@ -13,7 +13,7 @@ function cargarDatos(clave) {
     try {
         const datos = JSON.parse(localStorage.getItem(clave));
         return Array.isArray(datos) ? datos : [];
-    } catch {
+    } catch (error) {
         return [];
     }
 }
@@ -21,7 +21,7 @@ function cargarDatos(clave) {
 function guardarDatos(clave, datos) {
     try {
         localStorage.setItem(clave, JSON.stringify(datos));
-    } catch {
+    } catch (error) {
         alert("No se pudieron guardar los datos.");
     }
 }
@@ -31,21 +31,22 @@ async function cargarComponentes() {
         const elemento = document.getElementById(id);
 
         if (!elemento) {
-            console.error(`Falta el contenedor #${id} en esta página.`);
+            console.error("No existe el contenedor:", id);
             continue;
         }
 
         try {
-            const respuesta = await fetch(archivo);
+            const respuesta = await fetch(new URL(archivo, document.baseURI));
 
             if (!respuesta.ok) {
-                throw new Error(`Error ${respuesta.status}: ${archivo}`);
+                throw new Error("Error HTTP " + respuesta.status);
             }
 
             elemento.innerHTML = await respuesta.text();
-            console.log(`${archivo} cargado correctamente.`);
+            console.log("Componente cargado:", archivo);
         } catch (error) {
-            console.error(`No se pudo cargar ${archivo}:`, error);
+            console.error("Error al cargar " + archivo, error);
+            elemento.innerHTML = "";
         }
     }
 
@@ -63,7 +64,7 @@ async function cargarComponentes() {
 
 function buscarProducto() {
     const campo = document.getElementById("busqueda");
-    const busqueda = campo ? .value.trim() || "";
+    const busqueda = campo ? campo.value.trim() : "";
 
     if (!window.location.pathname.endsWith("products.html")) {
         window.location.href = "products.html?buscar=" + encodeURIComponent(busqueda);
@@ -101,6 +102,7 @@ function actualizarCatalogo() {
                 .includes(busquedaActual.toLowerCase());
 
             const mostrar = coincideCategoria && coincideBusqueda;
+
             producto.hidden = !mostrar;
 
             if (mostrar) {
@@ -146,8 +148,11 @@ function agregarAlCarrito(boton) {
 
     if (!tarjeta) return;
 
-    const nombre = tarjeta.querySelector("h3") ? .textContent.trim();
-    const imagen = tarjeta.querySelector("img") ? .src;
+    const elementoNombre = tarjeta.querySelector("h3");
+    const elementoImagen = tarjeta.querySelector("img");
+
+    const nombre = elementoNombre ? elementoNombre.textContent.trim() : "";
+    const imagen = elementoImagen ? elementoImagen.src : "";
     const precio = obtenerPrecio(tarjeta);
 
     if (!nombre || !imagen || !Number.isFinite(precio) || precio <= 0) {
@@ -164,7 +169,13 @@ function agregarAlCarrito(boton) {
     if (existente) {
         existente.cantidad++;
     } else {
-        grhtCart.push({ id, nombre, imagen, precio, cantidad: 1 });
+        grhtCart.push({
+            id,
+            nombre,
+            imagen,
+            precio,
+            cantidad: 1
+        });
     }
 
     guardarCarrito();
@@ -173,11 +184,13 @@ function agregarAlCarrito(boton) {
 
 function crearBoton(texto, accion, indice, clase) {
     const boton = document.createElement("button");
+
     boton.type = "button";
     boton.className = clase;
     boton.textContent = texto;
     boton.dataset.cartAction = accion;
     boton.dataset.index = indice;
+
     return boton;
 }
 
@@ -191,6 +204,7 @@ function mostrarCarrito() {
     contenedor.replaceChildren();
 
     let total = 0;
+
     mensajeVacio.hidden = grhtCart.length > 0;
 
     grhtCart.forEach((producto, indice) => {
@@ -210,6 +224,7 @@ function mostrarCarrito() {
         imagen.src = producto.imagen;
         imagen.alt = producto.nombre;
         imagen.className = "img-fluid";
+
         columnaImagen.appendChild(imagen);
 
         const columnaDatos = document.createElement("div");
@@ -233,6 +248,7 @@ function mostrarCarrito() {
         cantidad.textContent = producto.cantidad;
 
         const aumentar = crearBoton("+", "increase", indice, "grht-cart-quantity");
+
         controles.append(disminuir, cantidad, aumentar);
 
         const subtotalElemento = document.createElement("strong");
@@ -243,9 +259,17 @@ function mostrarCarrito() {
 
         const icono = document.createElement("i");
         icono.className = "bi bi-trash";
+
         eliminar.prepend(icono, " ");
 
-        columnaDatos.append(nombre, precio, controles, subtotalElemento, eliminar);
+        columnaDatos.append(
+            nombre,
+            precio,
+            controles,
+            subtotalElemento,
+            eliminar
+        );
+
         fila.append(columnaImagen, columnaDatos);
         tarjeta.appendChild(fila);
         contenedor.appendChild(tarjeta);
@@ -256,6 +280,7 @@ function mostrarCarrito() {
 
 function cambiarCantidad(indice, cambio) {
     const producto = grhtCart[indice];
+
     if (!producto) return;
 
     producto.cantidad += cambio;
@@ -272,6 +297,7 @@ function eliminarProducto(indice) {
     if (!grhtCart[indice]) return;
 
     grhtCart.splice(indice, 1);
+
     guardarCarrito();
     mostrarCarrito();
 }
@@ -281,15 +307,18 @@ function vaciarCarrito() {
 
     if (confirm("¿Deseas vaciar el carrito?")) {
         grhtCart = [];
+
         guardarCarrito();
         mostrarCarrito();
     }
 }
 
 function finalizarCompra() {
-    alert(grhtCart.length ?
+    alert(
+        grhtCart.length ?
         "La función de pago todavía no está implementada." :
-        "Tu carrito está vacío.");
+        "Tu carrito está vacío."
+    );
 }
 
 function guardarComentarios() {
@@ -321,6 +350,7 @@ function mostrarComentarios() {
 
         const icono = document.createElement("i");
         icono.className = "bi bi-chat-left-quote fs-4";
+
         encabezado.append(nombre, icono);
 
         const fecha = document.createElement("small");
@@ -338,6 +368,7 @@ function mostrarComentarios() {
 
         const iconoEliminar = document.createElement("i");
         iconoEliminar.className = "bi bi-trash";
+
         boton.append(iconoEliminar, " Eliminar");
 
         tarjeta.append(encabezado, fecha, texto, boton);
@@ -347,8 +378,11 @@ function mostrarComentarios() {
 }
 
 function agregarComentario(formulario) {
-    const nombre = document.getElementById("grht-comment-name") ? .value.trim();
-    const texto = document.getElementById("grht-comment-text") ? .value.trim();
+    const campoNombre = document.getElementById("grht-comment-name");
+    const campoTexto = document.getElementById("grht-comment-text");
+
+    const nombre = campoNombre ? campoNombre.value.trim() : "";
+    const texto = campoTexto ? campoTexto.value.trim() : "";
 
     if (!nombre || !texto) return;
 
@@ -365,9 +399,11 @@ function agregarComentario(formulario) {
 
 function eliminarComentario(indice) {
     if (!grhtComments[indice]) return;
+
     if (!confirm("¿Deseas eliminar este comentario?")) return;
 
     grhtComments.splice(indice, 1);
+
     guardarComentarios();
     mostrarComentarios();
 }
@@ -402,6 +438,7 @@ document.addEventListener("submit", evento => {
 
 document.addEventListener("click", evento => {
     const objetivo = evento.target;
+
     if (!(objetivo instanceof Element)) return;
 
     const filtro = objetivo.closest("[data-category-filter]");
@@ -428,15 +465,19 @@ document.addEventListener("click", evento => {
             case "increase":
                 cambiarCantidad(indice, 1);
                 break;
+
             case "decrease":
                 cambiarCantidad(indice, -1);
                 break;
+
             case "remove":
                 eliminarProducto(indice);
                 break;
+
             case "clear":
                 vaciarCarrito();
                 break;
+
             case "checkout":
                 finalizarCompra();
                 break;
