@@ -1,3 +1,174 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #1e293b;
+    background: #f8fafc;
+}
+
+header {
+    padding: 15px 0;
+    background: #0f172a;
+    color: white;
+}
+
+header img {
+    max-height: 65px;
+}
+
+header input {
+    width: 75%;
+    padding: 9px;
+    border: 0;
+    border-radius: 6px;
+}
+
+header button {
+    padding: 9px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: #0ea5e9;
+    color: white;
+}
+
+header a {
+    margin: 0 8px;
+    color: white;
+    text-decoration: none;
+}
+
+nav {
+    padding: 12px;
+    background: #1e293b;
+}
+
+.grht-navegationmenu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.grht-navegationmenu a {
+    color: white;
+    text-decoration: none;
+}
+
+.grht-navegationmenu a:hover,
+footer a:hover {
+    color: #38bdf8;
+}
+
+.grht-presentation {
+    padding: 40px 25px;
+    margin: 25px 0;
+    border-radius: 12px;
+    background: #e2e8f0;
+}
+
+.grht-text {
+    color: #475569;
+    line-height: 1.7;
+}
+
+.grht-subtitles {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0ea5e9;
+}
+
+.grht-card,
+.grht-imageclick,
+article.card {
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 3px 12px #0f172a12;
+}
+
+.grht-card img,
+.grht-imageclick img,
+article.card img {
+    width: 100%;
+    max-height: 230px;
+    object-fit: cover;
+}
+
+.grht-imageclick {
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.grht-imageclick h3,
+.grht-imageclick p {
+    padding: 0 15px;
+}
+
+.grht-complaints,
+.grht-complaints-section,
+.grht-categories {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.grht-complaints form {
+    border-radius: 12px;
+    box-shadow: 0 3px 15px #0f172a12;
+}
+
+.btn-solid {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 6px;
+    background: #0284c7;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-solid:hover {
+    background: #0369a1;
+    color: white;
+}
+
+.grht-cart-quantity,
+.grht-cart-remove {
+    margin: 5px;
+    padding: 7px 12px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.grht-cart-quantity {
+    background: #e0f2fe;
+}
+
+.grht-cart-remove {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 35px 0;
+    background: #0f172a;
+    color: white;
+}
+
+footer h3 {
+    color: #38bdf8;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
 .grht-hero {
     min-height: 600px;
     display: flex;
