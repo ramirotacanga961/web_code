@@ -39,6 +39,10 @@ body {
     font-size: 35px;
 }
 
+#header header a.fs-1 {
+    font-size: 50px !important;
+}
+
 #header header a,
 #footer footer a {
     margin: 8px;
@@ -49,6 +53,14 @@ body {
 #header header a:hover,
 #footer footer a:hover,
 #navbar nav a:hover {
+    color: #38bdf8;
+}
+
+#footer footer {
+    margin-top: 40px;
+}
+
+#footer footer h3 {
     color: #38bdf8;
 }
 
@@ -87,6 +99,13 @@ body {
 
 .grht-subtitles {
     border-bottom: 2px solid #0ea5e9;
+}
+
+.grht-hero {
+    min-height: 600px;
+    background-image: url("../visual/Robot futurista presenta tecnología neón.jpg");
+    background-position: center;
+    background-size: cover;
 }
 
 .grht-card,
@@ -145,19 +164,4 @@ article.card img {
 .grht-cart-remove {
     background-color: #fee2e2;
     color: #b91c1c;
-}
-
-#footer footer {
-    margin-top: 40px;
-}
-
-#footer footer h3 {
-    color: #38bdf8;
-}
-
-.grht-hero {
-    min-height: 600px;
-    background-image: url("../visual/Robot futurista presenta tecnología neón.jpg");
-    background-position: center;
-    background-size: cover;
 }

@@ -21,32 +21,26 @@
 
         <section aria-label="Presentación principal de TecnoNova">
 
-            <div id="grhtCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#grhtCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Productos"></button>
-                    <button type="button" data-bs-target="#grhtCarousel" data-bs-slide-to="1" aria-label="Descuentos"></button>
-                    <button type="button" data-bs-target="#grhtCarousel" data-bs-slide-to="2" aria-label="Comentarios"></button>
-                </div>
+            <div id="grhtCarousel" class="carousel carousel-overlay slide" data-bs-autoplay="true" data-bs-interval="5000">
 
                 <div class="carousel-inner">
 
                     <article class="carousel-item active">
 
-                        <div class="vh-100 d-flex align-items-center bg-dark">
-                            <img src="visual/products.jpg" class="img-fluid" alt="Variedad de productos tecnológicos">
-                        </div>
+                        <div class="vh-100 position-relative">
+                            <img src="visual/products.jpg" class="w-100 h-100 object-fit-cover" alt="Variedad de productos tecnológicos">
 
-                        <div class="carousel-caption">
-                            <div class="container-fluid text-white">
-                                <div class="row align-items-center">
-                                    <div class="col-12 md:col-7">
-                                        <div class="grht-presentation">
-                                            <h1>La tecnología que necesitas, en un solo lugar</h1>
-                                            <p class="grht-text">
-                                                Explora nuestra variedad de celulares, laptops, accesorios y dispositivos tecnológicos para cada necesidad.
-                                            </p>
-                                            <a href="products.html" class="btn-solid">Ver productos</a>
+                            <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 md:col-7">
+                                            <div class="grht-presentation">
+                                                <h1>La tecnología que necesitas, en un solo lugar</h1>
+                                                <p class="grht-text">
+                                                    Explora nuestra variedad de celulares, laptops, accesorios y dispositivos tecnológicos para cada necesidad.
+                                                </p>
+                                                <a href="products.html" class="btn-solid">Ver productos</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -57,20 +51,20 @@
 
                     <article class="carousel-item">
 
-                        <div class="vh-100 d-flex align-items-center bg-dark">
-                            <img src="visual/discounts.jpg" class="img-fluid" alt="Productos tecnológicos en promoción">
-                        </div>
+                        <div class="vh-100 position-relative">
+                            <img src="visual/discounts.jpg" class="w-100 h-100 object-fit-cover" alt="Productos tecnológicos en promoción">
 
-                        <div class="carousel-caption">
-                            <div class="container-fluid text-white">
-                                <div class="row align-items-center">
-                                    <div class="col-12 md:col-7">
-                                        <div class="grht-presentation">
-                                            <h2>Ofertas y descuentos</h2>
-                                            <p class="grht-text">
-                                                Descubre promociones y oportunidades para renovar tus dispositivos y accesorios tecnológicos.
-                                            </p>
-                                            <a href="discounts.html" class="btn-solid">Ver descuentos</a>
+                            <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 md:col-7">
+                                            <div class="grht-presentation">
+                                                <h2>Ofertas y descuentos</h2>
+                                                <p class="grht-text">
+                                                    Descubre promociones y oportunidades para renovar tus dispositivos y accesorios tecnológicos.
+                                                </p>
+                                                <a href="discounts.html" class="btn-solid">Ver descuentos</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -81,20 +75,20 @@
 
                     <article class="carousel-item">
 
-                        <div class="vh-100 d-flex align-items-center bg-dark">
-                            <img src="visual/comments.jpg" class="img-fluid" alt="Opiniones de clientes de TecnoNova">
-                        </div>
+                        <div class="vh-100 position-relative">
+                            <img src="visual/comments.jpg" class="w-100 h-100 object-fit-cover" alt="Opiniones de clientes de TecnoNova">
 
-                        <div class="carousel-caption">
-                            <div class="container-fluid text-white">
-                                <div class="row align-items-center">
-                                    <div class="col-12 md:col-7">
-                                        <div class="grht-presentation">
-                                            <h2>Tu opinión es importante</h2>
-                                            <p class="grht-text">
-                                                Comparte tu experiencia, consulta las opiniones de otros clientes y ayúdanos a mejorar.
-                                            </p>
-                                            <a href="comments.html" class="btn-solid">Ver comentarios</a>
+                            <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 md:col-7">
+                                            <div class="grht-presentation">
+                                                <h2>Tu opinión es importante</h2>
+                                                <p class="grht-text">
+                                                    Comparte tu experiencia, consulta las opiniones de otros clientes y ayúdanos a mejorar.
+                                                </p>
+                                                <a href="comments.html" class="btn-solid">Ver comentarios</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -105,15 +99,19 @@
 
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#grhtCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Anterior</span>
-                </button>
+                <div class="carousel-overlay-controls">
+                    <div class="d-flex justify-content-between align-items-center w-100 px-3">
 
-                <button class="carousel-control-next" type="button" data-bs-target="#grhtCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Siguiente</span>
-                </button>
+                        <button class="btn-icon btn-sm btn-subtle theme-secondary" type="button" data-bs-target="#grhtCarousel" data-bs-slide="prev" aria-label="Diapositiva anterior">
+                            <span class="carousel-icon-prev" aria-hidden="true"></span>
+                        </button>
+
+                        <button class="btn-icon btn-sm btn-subtle theme-secondary" type="button" data-bs-target="#grhtCarousel" data-bs-slide="next" aria-label="Diapositiva siguiente">
+                            <span class="carousel-icon-next" aria-hidden="true"></span>
+                        </button>
+
+                    </div>
+                </div>
 
             </div>
 

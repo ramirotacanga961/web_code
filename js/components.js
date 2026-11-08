@@ -218,7 +218,7 @@ function mostrarCarrito() {
         fila.className = "row align-items-center";
 
         const columnaImagen = document.createElement("div");
-        columnaImagen.className = "col-4 col-md-2";
+        columnaImagen.className = "col-4 md:col-2";
 
         const imagen = document.createElement("img");
         imagen.src = producto.imagen;
@@ -336,7 +336,7 @@ function mostrarComentarios() {
 
     grhtComments.forEach((comentario, indice) => {
         const columna = document.createElement("div");
-        columna.className = "col-12 col-md-6 col-lg-4";
+        columna.className = "col-12 md:col-6 lg:col-4";
 
         const tarjeta = document.createElement("div");
         tarjeta.className = "card h-100 p-3";
@@ -354,7 +354,7 @@ function mostrarComentarios() {
         encabezado.append(nombre, icono);
 
         const fecha = document.createElement("small");
-        fecha.className = "text-muted mb-3";
+        fecha.className = "fg-secondary mb-3";
         fecha.textContent = comentario.fecha;
 
         const texto = document.createElement("p");
@@ -363,7 +363,7 @@ function mostrarComentarios() {
 
         const boton = document.createElement("button");
         boton.type = "button";
-        boton.className = "btn btn-outline-danger btn-sm align-self-start";
+        boton.className = "btn-outline theme-danger btn-sm align-self-start";
         boton.dataset.commentIndex = indice;
 
         const iconoEliminar = document.createElement("i");

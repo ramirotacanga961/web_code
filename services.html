@@ -21,7 +21,7 @@
 
         <section class="grht-presentation row align-items-center py-5">
 
-            <div class="col-12 col-md-6">
+            <div class="col-12 md:col-6">
                 <h1>Nuestros servicios</h1>
 
                 <p class="grht-text">
@@ -31,7 +31,7 @@
                 <a href="#services" class="btn-solid">Conocer servicios</a>
             </div>
 
-            <div class="col-12 col-md-6 text-center">
+            <div class="col-12 md:col-6 text-center">
                 <img src="visual/services.jpg" class="img-fluid" alt="Servicios tecnológicos de TecnoNova">
             </div>
 
@@ -265,61 +265,57 @@
 
             <div class="accordion mt-4" id="grht-faq">
 
-                <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#grht-question-one" aria-expanded="true" aria-controls="grht-question-one">
-                            ¿Cómo puedo solicitar un servicio?
-                        </button>
-                    </h3>
+                <details class="accordion-item" name="grht-faq" open>
+                    <summary class="accordion-header">
+                        ¿Cómo puedo solicitar un servicio?
+                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m2 5 6 6 6-6"/>
+                        </svg>
+                    </summary>
 
-                    <div id="grht-question-one" class="accordion-collapse collapse show" data-bs-parent="#grht-faq">
-                        <div class="accordion-body">
-                            Puedes comunicarte con nuestro equipo mediante los canales de contacto disponibles.
-                        </div>
+                    <div class="accordion-body">
+                        Puedes comunicarte con nuestro equipo mediante los canales de contacto disponibles.
                     </div>
-                </div>
+                </details>
 
-                <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#grht-question-two" aria-expanded="false" aria-controls="grht-question-two">
-                            ¿Los servicios tienen un costo?
-                        </button>
-                    </h3>
+                <details class="accordion-item" name="grht-faq">
+                    <summary class="accordion-header">
+                        ¿Los servicios tienen un costo?
+                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m2 5 6 6 6-6"/>
+                        </svg>
+                    </summary>
 
-                    <div id="grht-question-two" class="accordion-collapse collapse" data-bs-parent="#grht-faq">
-                        <div class="accordion-body">
-                            El costo depende del tipo de servicio y de las características del equipo.
-                        </div>
+                    <div class="accordion-body">
+                        El costo depende del tipo de servicio y de las características del equipo.
                     </div>
-                </div>
+                </details>
 
-                <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#grht-question-three" aria-expanded="false" aria-controls="grht-question-three">
-                            ¿Puedo consultar sobre la garantía de un producto?
-                        </button>
-                    </h3>
+                <details class="accordion-item" name="grht-faq">
+                    <summary class="accordion-header">
+                        ¿Puedo consultar sobre la garantía de un producto?
+                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m2 5 6 6 6-6"/>
+                        </svg>
+                    </summary>
 
-                    <div id="grht-question-three" class="accordion-collapse collapse" data-bs-parent="#grht-faq">
-                        <div class="accordion-body">
-                            Sí. Puedes comunicarte con atención al cliente para recibir orientación sobre las condiciones de garantía de tu producto.
-                        </div>
+                    <div class="accordion-body">
+                        Sí. Puedes comunicarte con atención al cliente para recibir orientación sobre las condiciones de garantía de tu producto.
                     </div>
-                </div>
+                </details>
 
-                <div class="accordion-item">
-                    <h3 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#grht-question-four" aria-expanded="false" aria-controls="grht-question-four">
-                            ¿Debo reservar una atención?
-                        </button>
-                    </h3>
+                <details class="accordion-item" name="grht-faq">
+                    <summary class="accordion-header">
+                        ¿Debo reservar una atención?
+                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m2 5 6 6 6-6"/>
+                        </svg>
+                    </summary>
 
-                    <div id="grht-question-four" class="accordion-collapse collapse" data-bs-parent="#grht-faq">
-                        <div class="accordion-body">
-                            Te recomendamos consultar previamente la disponibilidad del servicio y los horarios de atención.
-                        </div>
+                    <div class="accordion-body">
+                        Te recomendamos consultar previamente la disponibilidad del servicio y los horarios de atención.
                     </div>
-                </div>
+                </details>
 
             </div>
         </section>
