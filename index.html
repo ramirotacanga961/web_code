@@ -4,112 +4,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Encuentra celulares, laptops, accesorios y productos tecnológicos en TecnoNova.">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>TecnoNova</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title>PRINCIPAL</title>
 </head>
 
 <body>
+
     <div id="header"></div>
     <div id="navbar"></div>
 
     <main>
-        <section class="container-fluid">
-            <div class="grht-presentation">
-                <h1>
-                    Tecnología para todos los días
-                </h1>
 
-                <p>
-                    Encuentra celulares, laptops, accesorios y productos para entretenimiento.
-                </p>
+        <div id="grhtCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
-                <a href="products.html">
-                    Explorar productos
-                </a>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#grhtCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Productos"></button>
+                <button type="button" data-bs-target="#grhtCarousel" data-bs-slide-to="1"
+                    aria-label="Descuentos"></button>
+                <button type="button" data-bs-target="#grhtCarousel" data-bs-slide-to="2"
+                    aria-label="Comentarios"></button>
             </div>
-        </section>
-        <section class="container-fluid">
-            <div class="row">
-                <div class="col-3">
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="vh-100 d-flex align-items-center bg-dark"
+                        style="background-image: linear-gradient(90deg, rgba(0, 10, 30, 0.9), rgba(0, 10, 30, 0.2)), url('visual/products.jpg'); background-size: cover; background-position: center;">
+
+                        <div class="container-fluid text-white">
+                            <div class="row align-items-center">
+                                <div class="col-12 md:col-7">
+                                    <div class="grht-presentation">
+                                        <h1>Descubre nuestros productos</h1>
+                                        <p class="grht-text">
+                                            Explora nuestra variedad de celulares, laptops, accesorios
+                                            y dispositivos tecnológicos para cada necesidad.
+                                        </p>
+                                        <a href="products.html" class="btn-solid">Ver productos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="vh-100 d-flex align-items-center bg-dark"
+                        style="background-image: linear-gradient(90deg, rgba(0, 10, 30, 0.9), rgba(0, 10, 30, 0.2)), url('visual/discounts.jpg'); background-size: cover; background-position: center;">
+
+                        <div class="container-fluid text-white">
+                            <div class="row align-items-center">
+                                <div class="col-12 md:col-7">
+                                    <div class="grht-presentation">
+                                        <h1>Ofertas y descuentos</h1>
+                                        <p class="grht-text">
+                                            Descubre ofertas especiales y aprovecha promociones
+                                            en productos tecnológicos.
+                                        </p>
+                                        <a href="discounts.html" class="btn-solid">Ver descuentos</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="vh-100 d-flex align-items-center bg-dark"
+                        style="background-image: linear-gradient(90deg, rgba(0, 10, 30, 0.9), rgba(0, 10, 30, 0.2)), url('visual/comments.jpg'); background-size: cover; background-position: center;">
+
+                        <div class="container-fluid text-white">
+                            <div class="row align-items-center">
+                                <div class="col-12 md:col-7">
+                                    <div class="grht-presentation">
+                                        <h1>Comparte tu experiencia</h1>
+                                        <p class="grht-text">
+                                            Tu opinión es importante para nosotros. Lee las opiniones
+                                            de otros clientes y comparte tu experiencia con TecnoNova.
+                                        </p>
+                                        <a href="comments.html" class="btn-solid">Dejar un comentario</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <section class="container-fluid py-5">
+            <div class="row g-4">
+
+                <div class="col-12 sm:col-6 lg:col-3">
                     <article class="grht-imageclick">
                         <h3>Productos</h3>
-                        <a href="products.html"><img class="img-fluid" src="visual\navegation\products.jpg"
-                                alt="Productos"></a>
+                        <a href="products.html">
+                            <img src="visual/navegation/products.jpg" class="img-fluid" alt="Productos tecnológicos">
+                        </a>
                         <p>Explora celulares, laptops, accesorios y tecnología para tu día a día.</p>
-
-
                     </article>
                 </div>
-                <div class="col-3">
+
+                <div class="col-12 sm:col-6 lg:col-3">
                     <article class="grht-imageclick">
                         <h3>Descuentos</h3>
-                        <a href="discounts.html"><img class="img-fluid" src="visual\navegation\discounts.jpg"
-                                alt="Descuentos"></a>
+                        <a href="discounts.html">
+                            <img src="visual/navegation/discounts.jpg" class="img-fluid" alt="Ofertas y descuentos">
+                        </a>
                         <p>Descubre ofertas especiales y aprovecha promociones en productos tecnológicos.</p>
-
-
                     </article>
                 </div>
-                <div class="col-3">
+
+                <div class="col-12 sm:col-6 lg:col-3">
                     <article class="grht-imageclick">
                         <h3>Carrito</h3>
-                        <a href="shopping.html"><img class="img-fluid" src="visual\navegation\shopping.jpg"
-                                alt="Carrito"></a>
+                        <a href="shopping.html">
+                            <img src="visual/navegation/shopping.jpg" class="img-fluid" alt="Carrito de compras">
+                        </a>
                         <p>Revisa los productos que elegiste y prepárate para realizar tu compra.</p>
-
-
                     </article>
                 </div>
-                <div class="col-3">
+
+                <div class="col-12 sm:col-6 lg:col-3">
                     <article class="grht-imageclick">
                         <h3>Servicio al cliente</h3>
-                        <a href="services.html"><img class="img-fluid" src="visual\navegation\services.jpg"
-                                alt="Servicio al cliente"></a>
+                        <a href="services.html">
+                            <img src="visual/navegation/services.jpg" class="img-fluid" alt="Servicio al cliente">
+                        </a>
                         <p>Resuelve tus dudas y recibe ayuda sobre nuestros productos y servicios.</p>
-
-
                     </article>
                 </div>
-                <div class="col-3">
+
+                <div class="col-12 sm:col-6 lg:col-3">
                     <article class="grht-imageclick">
                         <h3>Blog</h3>
-                        <a href="blog.html"><img class="img-fluid" src="visual\navegation\blog.jpg" alt="Blog"></a>
+                        <a href="blog.html">
+                            <img src="visual/navegation/blog.jpg" class="img-fluid" alt="Blog de tecnología">
+                        </a>
                         <p>Conoce las últimas novedades, noticias y tendencias del mundo tecnológico.</p>
-
-
                     </article>
                 </div>
-                <div class="col-3">
+
+                <div class="col-12 sm:col-6 lg:col-3">
                     <article class="grht-imageclick">
                         <h3>Comentarios</h3>
-                        <a href="comments.html"><img class="img-fluid" src="visual\navegation\review.jpg"
-                                alt="Comentarios"></a>
+                        <a href="comments.html">
+                            <img src="visual/navegation/review.jpg" class="img-fluid" alt="Comentarios y reseñas">
+                        </a>
                         <p>Lee las opiniones de nuestros clientes y comparte tu experiencia con TecnoNova.</p>
-
-
                     </article>
                 </div>
-                <div class="col-3">
+
+                <div class="col-12 sm:col-6 lg:col-3">
                     <article class="grht-imageclick">
-                        <h3>Reclamaciones</h3>
-                        <a href="complaints.html"><img class="img-fluid" src="visual\navegation\complaints.jpg"
-                                alt="Reclamaciones"></a>
+                        <h3>Libro de reclamaciones</h3>
+                        <a href="complaints.html">
+                            <img src="visual/navegation/complaints.jpg" class="img-fluid" alt="Libro de reclamaciones">
+                        </a>
                         <p>Registra tus reclamos o quejas y ayúdanos a mejorar nuestro servicio.</p>
-
                     </article>
                 </div>
+
             </div>
         </section>
 
     </main>
+
     <div id="footer"></div>
 
     <script type="module"
         src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/components.js"></script>
+
 </body>
 
 </html>

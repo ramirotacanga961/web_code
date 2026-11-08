@@ -1,56 +1,93 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-PE">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title></title>
+
+    <title>Carrito de compras | TecnoNova</title>
 </head>
 
 <body>
-    <main>
-        <section class="ghrt-presentation" class="container-fluid">
-            <div class="col-6">
-                <h1>
-                    
-                </h1>
-                <p class="grht-text">
-            
-                </p>
-            </div>
-            <div class="col-6">
-                <img src="" alt="Mascota virtual">
+
+    <div id="header"></div>
+    <div id="navbar"></div>
+
+    <main class="container py-4">
+
+        <section class="grht-presentation container-fluid">
+            <div class="row align-items-center">
+
+                <div class="col-12 col-md-6">
+                    <h1>Tu carrito de compras</h1>
+                    <p class="grht-text">
+                        Revisa tus productos y prepara tu próxima compra en TecnoNova.
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-6 text-center">
+                    <img src="visual\shopping.jpg" class="img-fluid" alt="Mascota virtual de TecnoNova">
+                </div>
+
             </div>
         </section>
 
+        <section class="my-5">
 
-            <div class="resumen-carrito">
-                <h2>
-                    Resumen de compra
-                </h2>
-                <p>
-                    Total:
-                    <strong id="total-carrito">
-                        S/ 0
-                    </strong>
-                </p>
-                <button class="boton-principal" onclick="finalizarCompra()">
+            <h2 class="grht-subtitles">Productos seleccionados</h2>
 
-                    Finalizar compra
-                </button>
+            <div id="grht-cart-products" class="my-4"></div>
 
-                <button class="boton-vaciar" onclick="vaciarCarrito()"> Vaciar carrito
-                </button>
+            <p id="grht-cart-empty" class="text-center py-4">
+                Tu carrito está vacío. ¡Agrega algunos productos!
+            </p>
+
+        </section>
+
+        <section class="my-5">
+
+            <h2 class="grht-subtitles">Resumen de compra</h2>
+
+            <div class="card my-4">
+                <div class="card-body">
+
+                    <p class="fs-5">
+                        Total:
+                        <strong id="grht-cart-total">S/ 0.00</strong>
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+
+                        <button type="button" class="btn-solid" onclick="grhtCheckout()">
+                            <i class="bi bi-credit-card"></i>
+                            Finalizar compra
+                        </button>
+
+                        <button type="button" class="btn btn-outline-danger" onclick="grhtClearCart()">
+                            <i class="bi bi-trash"></i>
+                            Vaciar carrito
+                        </button>
+
+                    </div>
+
+                </div>
             </div>
+
         </section>
 
     </main>
 
+    <div id="footer"></div>
+
     <script type="module"
         src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="js/components.js"></script>
+
+</body>
 
 </html>

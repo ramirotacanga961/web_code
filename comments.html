@@ -4,42 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title></title>
+
+    <title>Comentarios | TecnoNova</title>
 </head>
 
 <body>
-    <main>
-        <section class="ghrt-presentation" class="container-fluid">
-            <div class="col-6">
-                <h1>
-                    
-                </h1>
-                <p class="grht-text">
-            
-                </p>
-            </div>
-            <div class="col-6">
-                <img src="" alt="Mascota virtual">
-            </div>
-        </section>
 
-        <section class="container-fluid">
-            <div class="new-comments">
-                <div class="row">
-                    <h3>Deja tu comentario</h3>
-                    <input type="text" placeholder="Tu nombre">
-                    <textarea placeholder="Escribe tu comentario"></textarea>
-                    <button>Publicar comentario</button>
+    <div id="header"></div>
+    <div id="navbar"></div>
+
+    <main class="container py-4">
+
+        <section class="grht-presentation container-fluid">
+            <div class="row align-items-center">
+                <div class="col-12 lg:col-6">
+                    <h1>Opiniones de nuestra comunidad</h1>
+
+                    <p class="grht-text">
+                        En TecnoNova queremos conocer tu opinión.
+                        Comparte tu experiencia, deja tus comentarios
+                        y conoce lo que otros usuarios piensan de nosotros.
+                    </p>
+                </div>
+
+                <div class="col-12 lg:col-6">
+                    <img class="img-fluid" src="visual\comments.jpg" alt="Mascota virtual de TecnoNova">
                 </div>
             </div>
         </section>
+
+        <section class="container-fluid my-5">
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+
+                    <div class="card p-4">
+                        <h2>Deja tu comentario</h2>
+
+                        <form id="grht-comments-form">
+
+                            <div class="mb-3">
+                                <label for="grht-comment-name" class="form-label">
+                                    Tu nombre
+                                </label>
+
+                                <input type="text" class="form-control" id="grht-comment-name"
+                                    placeholder="Escribe tu nombre" maxlength="50" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="grht-comment-text" class="form-label">
+                                    Tu comentario
+                                </label>
+
+                                <textarea class="form-control" id="grht-comment-text" rows="4" maxlength="500"
+                                    placeholder="Comparte tu experiencia con TecnoNova..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-solid">
+                                <i class="bi bi-send"></i>
+                                Publicar comentario
+                            </button>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="container-fluid my-5">
+
+            <h2 class="text-center mb-4">Comentarios de nuestros usuarios</h2>
+
+            <div id="grht-comments-empty" class="text-center py-4">
+                <i class="bi bi-chat-square-text fs-1"></i>
+                <p class="grht-text">
+                    Todavía no hay comentarios. ¡Sé el primero en compartir tu opinión!
+                </p>
+            </div>
+
+            <div id="grht-comments-list" class="row g-3"></div>
+
+        </section>
+
     </main>
+
+    <div id="footer"></div>
 
     <script type="module"
         src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="js/components.js"></script>
+
+</body>
 
 </html>
